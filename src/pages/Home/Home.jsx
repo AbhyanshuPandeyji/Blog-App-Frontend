@@ -14,7 +14,7 @@ const Home = () => {
   useEffect(() => {
 
     const response = async () => {
-      await makeRequest.get('/user/')
+      await makeRequest.get('user/')
         // response.data is way to fetch data with axios , as res.json() in fetch request
         .then((response) => setData(response.data))
     }
@@ -46,7 +46,7 @@ const Home = () => {
       ))
 
       } */}
-      <table className="container">
+      <table className="container mx-auto">
         <thead>
           <tr>
             {/* <th>Role</th> */}
@@ -54,7 +54,7 @@ const Home = () => {
             {/* <th>Age</th> */}
             {/* <th>Occupation</th> */}
             <th>Email</th>
-            <th>Password</th>
+            {/* <th>Password</th> */}
             <th>Username</th>
           </tr>
         </thead>
@@ -66,7 +66,7 @@ const Home = () => {
               {/* <td>{datas.age}</td> */}
               {/* <td>{datas.occupation}</td> */}
               <td>{datas.email}</td>
-              <td>{datas.password}</td>
+              {/* <td>{datas.password}</td> */}
               <td>{datas.username}</td>
 
             </tr>
