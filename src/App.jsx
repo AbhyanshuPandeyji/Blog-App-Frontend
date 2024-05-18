@@ -90,12 +90,6 @@ function App() {
 
   return (
     <div>
-      {/* <div>
-        <Navbar />
-        <p>Hello World</p>
-        <h1>Hello World</h1>
-        <h2>Hello World</h2>
-      </div> */}
       <RouterProvider router={router} />
     </div>
   )

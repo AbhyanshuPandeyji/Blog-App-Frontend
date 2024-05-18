@@ -6,7 +6,7 @@ import axios from "axios";
 //   withCredentials: true,
 // });
 export const makeRequest = axios.create({
-  baseURL: ["http://localhost:8000/api/" , "https://"],
+  baseURL: "https://blog-app-backend-2.onrender.com/api/",
   withCredentials: true,
 });
 
