@@ -16,6 +16,8 @@ const Home = () => {
     const response = async () => {
       await makeRequest.get('user/')
         // response.data is way to fetch data with axios , as res.json() in fetch request
+        // we need to always do it in fetch request to set data by response.data
+        // on in reducer with axios to set data by assigning it a key with data response.data
         .then((response) => setData(response.data))
     }
 

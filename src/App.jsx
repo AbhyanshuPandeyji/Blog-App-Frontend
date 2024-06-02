@@ -19,6 +19,7 @@ import {
 import Home from "./pages/Home/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Register from './pages/Register/Register.jsx';
+import BlogCardGrid from './components/Blog/BlogCardGrid.jsx';
 
 
 
@@ -66,8 +67,8 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: "/blogs",
-        element: <Home />
+        path: "/blog",
+        element: <BlogCardGrid />
       }
     ]
   },
