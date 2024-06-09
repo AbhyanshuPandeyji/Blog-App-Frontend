@@ -1,39 +1,16 @@
+// styles import
 // import './App.css'
+import "react-toastify/dist/ReactToastify.css";
 
 // packages import 
 // import { useState } from 'react'
-import Navbar from './components/navbar/Navbar.jsx';
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-  Outlet,
-  Navigate
 
-} from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
 
 
 // component import
-import Home from "./pages/Home/Home.jsx";
-import Login from "./pages/Login/Login.jsx";
-import Register from './pages/Register/Register.jsx';
-import BlogCardGrid from './components/Blog/BlogCardGrid.jsx';
-
-
-
-
-const Layout = () => {
-
-  return (
-    <div className="">
-      <Navbar />
-      <Outlet />
-    </div>
-  )
-
-}
+import Routing from "./routes/Routing.jsx";
 
 
 // const ProtectedRoute = ({ children }) => {
@@ -56,43 +33,14 @@ const Layout = () => {
 // multiple components in one , its routing not page rendering , different component can be put into the 
 // the main component render on that url / routing link , and can also be used through the stored and saved data
 // into the backend to access different routes with different data with stored state
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (<Layout />),
-    // these are the components that are going to pass in the layout to render in outlet
-    children: [
-      {
-        path: "/",
-        element: <Home />
-      },
-      {
-        path: "/blog",
-        element: <BlogCardGrid />
-      }
-    ]
-  },
-  {
-    path: "/Login",
-    element: <Login />
-  },
-  {
-    path: "/register",
-    element: <Register />
-  },
-])
-
-
-
-
-
 
 function App() {
 
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+    <>
+      <Routing/>
+      <ToastContainer/>
+    </>
   )
 }
 
