@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 
 // component import
 import Routing from "./routes/Routing.jsx";
+import { Suspense } from "react";
 
 
 // const ProtectedRoute = ({ children }) => {
@@ -38,8 +39,8 @@ function App() {
 
   return (
     <>
-      <Routing/>
-      <ToastContainer/>
+        <Routing />
+        <ToastContainer />
     </>
   )
 }

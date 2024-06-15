@@ -9,12 +9,12 @@ const BlogCardGrid = () => {
     const [visibility, setVisibility] = useState(3);
 
     return (
-        <div className='grid grid-cols-1 '>
+        <div className='flex flex-col'>
             <div>
                 {blogsData.slice(0, visibility).map((item, index) => (
                     <BlogCard
                         key={item.id}
-                        image={item.img}
+                        images={item.images}
                         title={item.title}
                         description={item.desc}
                     />

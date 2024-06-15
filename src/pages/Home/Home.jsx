@@ -11,11 +11,12 @@ import { toastify } from "../../utils/toast.js";
 import createAxiosInstance from "../../config/axiosConfig.js";
 import { getAllUser } from "../../redux/features/UserReducer/UserReducer.js";
 
-// const axios = createAxios
 
 const Home = () => {
-  const axios = createAxiosInstance();
-  const [data, setData] = useState()
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
+  // const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
 
 
@@ -24,7 +25,7 @@ const Home = () => {
   //   data
   // })
 
-  console.log(allUser)
+  // console.log(allUser)
   // console.log(usersData)
 
   useEffect(() => {
@@ -36,39 +37,61 @@ const Home = () => {
     //     .then((response) => setData(response.data))
     // }
 
-    // response();
-    dispatch(getAllUser());
-    if(allUser){
-      setData(allUser)
-      toastify({msg : "users Data Has been set" , type : "success"})
-    }
-    // setData(response.data)
-    
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        await dispatch(getAllUser());
+        setLoading(false);
+        toastify({ msg: "Users data has been fetched successfully", type: "success" });
+      } catch (err) {
+        setLoading(false);
+        setError("Failed to fetch users data");
+        console.error("Fetching error:", err);
+      }
+    };
+
+    fetchData();
+    // toastify({ msg: "users Data Has been set", type: "success" });
+    // setData(response.data);
+    // setLoader(false);
   }, [dispatch]);
 
+  // whenever setting the data from the used state or other data , always use a second use effect to set it
+  // if it is fetching in the data , to not run into infinite data rendering
+  useEffect(() => {
+    if (allUser) {
+      // using local data is not required and inefficient if data doesnt require the manipulation in the component level
+      // remembered the message component
+      setData(allUser);
+    }
+  }, [allUser])
 
 
-  if (data == null) return <div>Loading...</div>;
-  if (data == undefined) return <div>Loading...</div>;
-  if (!data) return null;
-  console.log(data);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+  if (!data) return <div>No data available</div>;
+  // console.log(data);
   // console.log(typeof data);
 
   // for (let i in data) {
   //   console.log(data[i].role);
   // }
 
-
-  const handleClick = ()=>{
-    toastify({ msg : "your button click is been successful" , type : "success"})
+// unless if the function is handling the fetching in and setting up the data by a click function 
+// the setting up any data by after fetching or getting in from a url , will be set in different function and 
+// block outside or other than the fetching in data 
+  const handleClick = () => {
+    toastify({ msg: "your button click is been successful", type: "success" })
   }
 
 
   return (
     <>
-      <div>
+      <div className="container">
         {/* {data} */}
-        <table className="container mx-auto">
+        <table className="">
           <thead>
             <tr>
               {/* <th>Role</th>
@@ -77,7 +100,7 @@ const Home = () => {
               <th>Username</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Password</th>
+              {/* <th>Password</th> */}
             </tr>
           </thead>
           <tbody>
@@ -89,8 +112,7 @@ const Home = () => {
                 <td>{datas.username}</td>
                 <td>{datas.name}</td>
                 <td>{datas.email}</td>
-                <td>{datas.password}</td>
-
+                {/* <td>{datas.password}</td> */}
               </tr>
             ))
             }
