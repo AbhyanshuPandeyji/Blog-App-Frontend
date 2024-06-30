@@ -6,16 +6,12 @@ import { useEffect, useMemo, useState } from "react";
 // functions import 
 // import { makeRequest } from "../../axios.js";
 import { useDispatch, useSelector } from "react-redux";
-import { makeRequest } from "../../config/axios.js"
 import { toastify } from "../../utils/toast.js";
-import createAxiosInstance from "../../config/axiosConfig.js";
 import { getAllUser } from "../../redux/features/UserReducer/UserReducer.js";
 
 // const axios = createAxios
 
 const Home = () => {
-  const axios = createAxiosInstance();
-  const [data, setData] = useState()
   const dispatch = useDispatch();
 
 
@@ -24,8 +20,10 @@ const Home = () => {
   //   data
   // })
 
-  console.log(allUser)
   // console.log(usersData)
+
+  // const [data, setData] = useState(null);
+  console.log(allUser)
 
   useEffect(() => {
     // const response = async () => {
@@ -38,20 +36,20 @@ const Home = () => {
 
     // response();
     dispatch(getAllUser());
-    if(allUser){
-      setData(allUser)
-      toastify({msg : "users Data Has been set" , type : "success"})
-    }
+    // if (allUser) {
+    //   setData(allUser)
+    //   toastify({ msg: "users Data Has been set", type: "success" })
+    // }
     // setData(response.data)
-    
+
   }, [dispatch]);
 
 
 
-  if (data == null) return <div>Loading...</div>;
-  if (data == undefined) return <div>Loading...</div>;
-  if (!data) return null;
-  console.log(data);
+  // if (data == null) return <div>Loading...</div>;
+  // if (data == undefined) return <div>Loading...</div>;
+  // if (!data) return null;
+  // console.log(data);
   // console.log(typeof data);
 
   // for (let i in data) {
@@ -59,15 +57,15 @@ const Home = () => {
   // }
 
 
-  const handleClick = ()=>{
-    toastify({ msg : "your button click is been successful" , type : "success"})
+  const handleClick = () => {
+    toastify({ msg: "your button click is been successful", type: "success" })
   }
 
 
   return (
     <>
+      <div>SomeContent</div>
       <div>
-        {/* {data} */}
         <table className="container mx-auto">
           <thead>
             <tr>
@@ -81,15 +79,15 @@ const Home = () => {
             </tr>
           </thead>
           <tbody>
-            {data.user.map((datas, index) => (
+            {allUser.user.map((data, index) => (
               <tr key={index}>
-                {/* <td>{datas.role}</td>
-                <td>{datas.age}</td>
-                <td>{datas.occupation}</td> */}
-                <td>{datas.username}</td>
-                <td>{datas.name}</td>
-                <td>{datas.email}</td>
-                <td>{datas.password}</td>
+                {/* <td>{data.role}</td>
+                <td>{data.age}</td>
+                <td>{data.occupation}</td> */}
+                <td>{data.username}</td>
+                <td>{data.name}</td>
+                <td>{data.email}</td>
+                <td>{data.password}</td>
 
               </tr>
             ))

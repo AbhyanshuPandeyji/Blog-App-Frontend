@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -11,8 +11,11 @@ import {
 
 
 // components import 
-import Home from "../pages/Home/Home.jsx";
+// import Home from "../pages/Home/Home.jsx";
 import Navbar from "../components/navbar/Navbar.jsx"
+import Loader from '../utils/Loader.jsx';
+const Home = lazy(()=> import("../pages/Home/Home.jsx"));
+
 
 // in the other app instead of providing the router provider its using the browser router , which is the main component to show the
 // routes in the app , in the main file , so it doesn't need to explicitly say router provider it can directly uses the routes and the children elements
@@ -56,7 +59,11 @@ const Routing = () => {
   ])
 
 
-  return (<RouterProvider router={router} />)
+  return (
+    <Suspense fallback={<Loader/>} >
+      <RouterProvider router={router} />
+    </Suspense>
+  )
 
 }
 

@@ -4,9 +4,8 @@ import createAxiosInstance from "../../../config/axiosConfig";
 
 const axios = createAxiosInstance();
 
-
-// no need to use the assign operator to define the single reducer in the reducers because when using this , its just 
-// like use state , it will create multiple keys in the state with the different names to access and then in those keys 
+// no need to use the assign operator to define the single reducer in the reducers because when using this , its just
+// like use state , it will create multiple keys in the state with the different names to access and then in those keys
 // we can store different kinds of data's with key value pairs
 /*
     example :
@@ -44,36 +43,39 @@ const axios = createAxiosInstance();
     },
 */
 const initialState = {
-    user: null,
-    allUser: null,
-}
+  user: null,
+  allUser: null,
+};
 
 const userSlice = createSlice({
-    name: 'user',
-    initialState: initialState,
-    reducers: {
-        setUser(state, action) {
-            Object.keys(action.payload).forEach((key) => {
-                state[key] = action.payload[key];
-            })
-        }
-    }
-})
+  name: "user",
+  initialState: initialState,
+  reducers: {
+    setUser(state, action) {
+      Object.keys(action.payload).forEach((key) => {
+        state[key] = action.payload[key];
+      });
+    },
+  },
+});
+
+// [index] : name,
+// same as writing : 1: "SomeValue",
 
 export const { setUser } = userSlice.actions;
 export default userSlice.reducer;
 
-
 export const getAllUser = () => {
-    return async (dispatch) => {
-        try {
-
-            const response = await axios.get("/user/");
-            // console.log(response.data)
-            const data = response.data;
-            dispatch(setUser({allUser : data}));
-        } catch (error) {
-            toastify({ msg: "error while fetching the users", type: "error" })
-        }
+  return async (dispatch) => {
+    try {
+      const response = await axios.get("/user");
+      // console.log(response.data)
+      if (response.status === 200) {
+        const data = response.data;
+        dispatch(setUser({ allUser: data }));
+      }
+    } catch (error) {
+      toastify({ msg: "error while fetching the users", type: "error" });
     }
-}
+  };
+};
