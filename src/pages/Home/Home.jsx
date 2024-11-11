@@ -1,7 +1,10 @@
 // // import React from 'react'
 
+import AboutSection from "../../components/Homepage/AboutSection";
+import BlogsSection from "../../components/Homepage/Blog/BlogsSection";
 import HeroSection from "../../components/Homepage/HeroSection";
 import LinksSection from "../../components/Homepage/LinksSection";
+import Newsletter from "../../components/Homepage/Newsletter";
 
 // import { useEffect, useMemo, useState } from "react";
 
@@ -169,12 +172,19 @@ import LinksSection from "../../components/Homepage/LinksSection";
 // export default Home;
 
 
+// create a basic blog website first with the cards and all the dynamic stuffs then starts to add the features and advancements
+// the specificity and other things - after the admin point is been reached
+
 function Home(){
   return (
     <div>
       {/* Homepage */}
       <HeroSection/>
-      <LinksSection/>
+      <AboutSection/>
+      <BlogsSection/>
+      {/* // this was used to be the blog display section on home page for avoiding confusions */}
+      {/* <LinksSection/> */}
+      <Newsletter/>
     </div>
   )
 }

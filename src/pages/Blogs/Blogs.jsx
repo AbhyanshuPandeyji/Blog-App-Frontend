@@ -1,6 +1,6 @@
 import React from 'react'
 import BlogCard from '../../components/Blog/BlogCard.jsx'
-import { blogsData } from "../../constants/BlogsDataConstant.js"
+import { blogsData } from "../../constants/Homepage/BlogsDataConstant.js"
 import { Outlet } from 'react-router-dom';
 import profileImg from "../../assets/images/profilephoto.jpg";
 
@@ -12,9 +12,9 @@ const Blogs = () => {
       ))} */}
       <div className='flex lg:flex-row flex-col gap-4 px-2' >
         {/* Tooltip  */}
-        <div className='h-fit w-3/12 sticky left-0 top-[120px] rounded-lg bg-blue-400' >
+        {/* <div className='h-fit w-3/12 sticky left-0 top-[120px] rounded-lg bg-blue-400' >
           <TooltipBox />
-        </div>
+        </div> */}
         {/* Blogs Content */}
 
         <div className='min-h-[100vh] w-6/12 flex flex-col  gap-y-4' >
@@ -22,6 +22,7 @@ const Blogs = () => {
             blogsData?.map((item, index) => {
               return (
                 <BlogCard
+                  key={index}
                   // img={item?.img}
                   img={profileImg}
                   title={item?.title}

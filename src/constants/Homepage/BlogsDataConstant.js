@@ -1,6 +1,15 @@
 import { format } from "date-fns"
 
-format(new Date(2014, 1, 11), "yyyy-MM-dd");
+const dates = format(new Date(2014, 1, 11), "yyyy-MM-dd");
+
+
+export const featureBlogsTitles = [
+    "Consumption" ,
+    "Creation",
+    "Ethic",
+    "Valuation"
+];
+
 
 
 export const blogsData = [
@@ -15,7 +24,7 @@ export const blogsData = [
         placeat eum labore rem sequi molestias enim maiores facilis.
         1`,
 
-        author: "Abhyanshu P", author: "Abhyanshu P",
+        author: "Abhyanshu P",
         date: format(new Date(2014, 1, 11), "yyyy-MM-dd")
     },
     {

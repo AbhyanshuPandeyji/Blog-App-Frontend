@@ -19,10 +19,10 @@ const Footer = () => {
     // handleCurrentYear();
 
     return (
-        <div className="w-full flex flex-col h-[400px] bg-yellow-100">
+        <div className="w-full flex flex-col min-h-[400px] h-fit  bg-yellow-100">
             {/* links section */}
-            <div className="flex justify-center h-4/6 p-4 bg-red-100 w-[80%] mx-auto">
-                <div className="flex flex-col w-1/3 ">
+            <div className="flex md:flex-row flex-col justify-center md:gap-y-0 gap-y-10 h-4/6 p-4 bg-red-100 w-[80%] mx-auto">
+                <div className="flex flex-col md:w-1/3 w-full ">
                     <h2 className="text-2xl font-semibold">Title</h2>
                     <ul>
                         <li>Link1</li>
@@ -31,7 +31,7 @@ const Footer = () => {
                         <li>Link4</li>
                     </ul>
                 </div>
-                <div className="flex flex-col w-1/3 ">
+                <div className="flex flex-col md:w-1/3 w-full ">
                     <h2 className="text-2xl font-semibold">Title</h2>
                     <ul>
                         <li>Link1</li>
@@ -40,7 +40,7 @@ const Footer = () => {
                         <li>Link4</li>
                     </ul>
                 </div>
-                <div className="flex flex-col w-1/3">
+                <div className="flex flex-col md:w-1/3 w-full">
                     {/* newsletter */}
                     <div className="flex flex-col">
                         <p></p>
