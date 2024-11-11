@@ -1,16 +1,20 @@
 import { Link, NavLink } from "react-router-dom"
 
 
-const BlogCard = ({img , title , description}) => {
+const BlogCard = ({ img, title, description, date, author }) => {
     return (
-        <div>
-            <div className="w-full h-[300px] bg-blue-800">
-                <img src={img} className="card-img-top w-[30%] h-[200px]" alt="..."/>
-                    <div className="card-body">
-                        <h5 className="text-2xl">{title}</h5>
-                        <p className="text-lg">{description}</p>
-                        <NavLink to="/" >Go Somewhere</NavLink>
-                    </div>
+        <div className="mx-auto w-[94%] min-h-[200px] h-fit flex bg-blue-200 rounded-lg overflow-hidden">
+            <div className="w-1/3">
+                <img src={img} className="w-[200px] h-[200px] p-2 overflow-hidden rounded-lg" alt="..." />
+            </div>
+            <div className="flex w-2/3 flex-col justify-around gap-y-4 p-2 px-4">
+                <h5 className="text-2xl">{title}</h5>
+                <p className="text-lg">{description?.split("").splice(0, 100).join("")}...</p>
+                <div className="flex justify-between" >
+                    <span>{author}</span>
+                    <span>{date}</span>
+                </div>
+                {/* <NavLink to="/" >Go Somewhere</NavLink> */}
             </div>
         </div>
     )

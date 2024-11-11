@@ -1,7 +1,7 @@
 import axios from "axios";
 // import { store } from "../redux/store.js";
 // import { getItemFromStore } from "../utils";
-import { toastify } from '../utils/toast.js'
+import { toastify } from "../utils/toast.js";
 // import { logoutThunkMiddleware } from "../redux/features/user";
 
 // const getToken = () => {
@@ -19,13 +19,14 @@ const setCustomizedHeaders = (contentType = "application/json") => {
 const createAxiosInstance = (config = {}) => {
   const {
     base = import.meta.env.VITE_BASE_URL,
-    initialLoader = false,
-    showAlert = true,
+    // initialLoader = false,
+    // showAlert = true,
   } = config;
 
   const axiosInstance = axios.create({
     baseURL: base,
-    headers: setCustomizedHeaders(),
+    // headers: setCustomizedHeaders(),
+    headers: { "Content-Type" : "application/json"},
     credentials: "include",
     ...config,
   });

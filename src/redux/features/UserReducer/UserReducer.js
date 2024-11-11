@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toastify } from "../../../utils/toast";
 import createAxiosInstance from "../../../config/axiosConfig";
+import { setLoader } from "../Loaders/loaders";
+import { setStorageItem } from "../../../utils/storeItems";
 
 const axios = createAxiosInstance();
 
@@ -44,7 +46,8 @@ const axios = createAxiosInstance();
 */
 const initialState = {
   user: null,
-  allUser: null,
+  singleUser: null,
+  allUsers: null,
 };
 
 const userSlice = createSlice({
@@ -65,17 +68,90 @@ const userSlice = createSlice({
 export const { setUser } = userSlice.actions;
 export default userSlice.reducer;
 
-export const getAllUser = () => {
+export const getAllUsersThunkMiddleware = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/user");
-      // console.log(response.data)
+      dispatch(setLoader({ getLoader: true }));
+      const response = await axios.get("/user/getAll");
+      // console.log("getAllUsers", response.data);
       if (response.status === 200) {
-        const data = response.data;
-        dispatch(setUser({ allUser: data }));
+        // response.data is the usually how the data will come and data is not something that is defined by the backend is the value in side response ,
+        // if no object then data become the response.data value otherwise the response.data.valuefrombackend is the result
+        // else if the data is directly coming without any object no need to access it with the destructure object it can be directly used
+        // if coming as object the destructure used to easily access the data instead of writing the name after every response.data access either from frontend or backend
+        const data = response.data.users;
+        await dispatch(setUser({ allUsers: data }));
       }
     } catch (error) {
       toastify({ msg: "error while fetching the users", type: "error" });
+    } finally {
+      dispatch(setLoader({ getLoader: false }));
+    }
+  };
+};
+
+export const createUserThunkMiddleware = ({ data }) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoader({ loader: true }));
+      const response = await axios.post(`/user/create`, {
+        userData: data,
+      });
+
+      if (response.status === 200) {
+        const { message } = response.data;
+        toastify({
+          msg: message,
+          type: "success",
+        });
+
+        await dispatch(getAllUsersThunkMiddleware());
+      }
+      console.log("api request response data", response.data);
+    } catch (error) {
+      if (error) {
+        console.log("error message in frontend api request", error);
+      }
+    } finally {
+      dispatch(setLoader({ loader: false }));
+    }
+
+    // if (response.status === 200) {
+    //   const { message } = response.data;
+    //   toastify({
+    //     msg: message,
+    //     type: "success",
+    //   });
+    // }
+  };
+};
+
+export const loginUserThunkMiddleware = ({ data }) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoader({ loader: true }));
+      const response = await axios.post(`/user/login`, {
+        userData: data,
+      });
+
+      console.log("response data when logging in user", response.data);
+
+      if (response.status === 200) {
+        const { message } = response.data;
+        toastify({
+          msg: message,
+          type: "success",
+        });
+
+        await setStorageItem(response.data.token);
+      }
+      // console.log("api request response data", response.data);
+    } catch (error) {
+      if (error) {
+        console.log("error message in frontend api request", error.message);
+      }
+    } finally {
+      dispatch(setLoader({ loader: false }));
     }
   };
 };

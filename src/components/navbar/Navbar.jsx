@@ -1,44 +1,86 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom';
+import { GoSidebarCollapse } from "react-icons/go";
+import { GoSidebarExpand } from "react-icons/go";
+// import logo from "../../assets/images/Deep Work.jpg"
+
+
 
 const Navbar = () => {
+
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  // const [show, setShow] = useState(true);
+  // const [lastScrollY, setLastScrollY] = useState(0);
+
+  // const controlNavbar = () => {
+  //   if (typeof window !== 'undefined') {
+  //     if (window.scrollY > lastScrollY) {
+  //       // if scroll down hide the navbar
+  //       setShow(false);
+  //     } else {
+  //       // if scroll up show the navbar
+  //       setShow(true);
+  //     }
+  //     setLastScrollY(window.scrollY);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     window.addEventListener('scroll', controlNavbar);
+
+  //     // cleanup function
+  //     return () => {
+  //       window.removeEventListener('scroll', controlNavbar);
+  //     };
+  //   }
+  // }, [lastScrollY]);
+
+  // ${show ? 'block transition-all duration-500 ease-in-out' : 'hidden transition-all duration-500 ease-in-out'}
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-  <div className="container-fluid">
-    <a className="navbar-brand" href="#">Navbar</a>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
-        </li>
-        <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-    </div>
+    <nav className={`h-[80px] min-h-fit w-full bg-gray-100 text-gray-900 fixed flex z-[999] 
+    flex-col justify-center items-center top-0 left-0 shadow-lg `}>
+      {/* <img src={logo} alt="" className='h-[50px] w-[50px] rounded-full' /> */}
+      <div className='md:block hidden w-3/4'>
+        <ul className='flex justify-center mx-auto p-4 gap-x-[60px] '>
+          <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out hover:underline`} to={"/"} >Home</NavLink>
+          <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out hover:underline`} to={"/blog"} >Blog</NavLink>
+          <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out hover:underline`} to={"/login"} >Login</NavLink>
+          {/* <NavLink className={`bg-none font-semibold text-lg `} >Home</NavLink> */}
+        </ul>
+      </div>
+
+      <div className='md:hidden block absolute top-5 right-5'>
+        {
+          !isNavOpen ? <GoSidebarExpand className='text-3xl' onClick={() => setIsNavOpen(true)} /> : <GoSidebarCollapse className='text-3xl' onClick={() => setIsNavOpen(false)} />
+        }
+      </div>
+
+      <div className={` ${isNavOpen ? "block" : "hidden"} h-full`}>
+        <ul className='justify-center w-full flex-col flex gap-y-2 p-2 transition-all mx-auto duration-500 ease-in-out'>
+          <NavLink
+            className={`bg-none font-semibold text-lg transition-allduration-500 ease-in-out `}
+            to={"/"}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className={`bg-none font-semibold text-lg transition-allduration-500 ease-in-out `}
+            to={"/blog"}
+          >
+            Blog
+          </NavLink>
+          <NavLink
+            className={`bg-none font-semibold text-lg transition-allduration-500 ease-in-out `}
+            to={"/login"}
+          >
+            Login
+          </NavLink>
+          {/* <NavLink className={`bg-none font-semibold text-lg `} >Home</NavLink> */}
+        </ul>
+      </div>
+    </nav>
   )
 }
 

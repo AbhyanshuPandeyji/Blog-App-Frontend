@@ -1,5 +1,5 @@
 // styles import
-// import './App.css'
+import './app.scss'
 import "react-toastify/dist/ReactToastify.css";
 
 // packages import 
@@ -11,6 +11,8 @@ import { ToastContainer } from 'react-toastify';
 
 // component import
 import Routing from "./routes/Routing.jsx";
+import { Suspense } from "react";
+import Loader from "./utils/Loader.jsx";
 
 
 // const ProtectedRoute = ({ children }) => {
@@ -33,13 +35,17 @@ import Routing from "./routes/Routing.jsx";
 // multiple components in one , its routing not page rendering , different component can be put into the 
 // the main component render on that url / routing link , and can also be used through the stored and saved data
 // into the backend to access different routes with different data with stored state
+// favicon and unauthorization error in hosting the new app , with dot env password match , the user fetching problem still exists and loader needs to be defined
+// the user fetching problem still exists and loader needs to be defined
 
 function App() {
 
   return (
     <>
-      <Routing/>
-      <ToastContainer/>
+      {/* <Suspense fallback={<Loader />} > */}
+      <Routing />
+      <ToastContainer />
+      {/* </Suspense> */}
     </>
   )
 }
