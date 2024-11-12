@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import { GoSidebarCollapse } from "react-icons/go";
 import { GoSidebarExpand } from "react-icons/go";
+import { FaSearch } from "react-icons/fa";
+import { NavbarLinks } from '../../constants/common/NavbarDataConstants';
 // import logo from "../../assets/images/Deep Work.jpg"
 
 
@@ -9,6 +11,7 @@ import { GoSidebarExpand } from "react-icons/go";
 const Navbar = () => {
 
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [searchOpen , setSerachOpen] = useState(false);
 
   // const [show, setShow] = useState(true);
   // const [lastScrollY, setLastScrollY] = useState(0);
@@ -45,21 +48,39 @@ const Navbar = () => {
       md:flex-row flex-col  justify-center items-center top-0 left-0 shadow-lg `}>
         {/* <img src={logo} alt="" className='h-[50px] w-[50px] rounded-full' /> */}
 
-        <NavLink className={`bg-none font-semibold text-2xl w-1/5 text-center p-4`} to={"/"} >Abhyanshu</NavLink>
-        <div className='md:block hidden w-3/5'>
+        <NavLink className={`bg-none font-semibold text-2xl md:w-1/5 w-full text-center p-4`} to={"/"} >Abhyanshu</NavLink>
+        <div className='md:block hidden md:w-3/5 w-full'>
           <ul className='flex justify-center items-center mx-auto p-4 gap-x-[60px] '>
-            <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out hover:underline`} to={"/"} >Home</NavLink>
+            {NavbarLinks && NavbarLinks?.map((item , index)=>{
+              return (
+                <NavLink key={index} className={`bg-none font-semibold text-lg transition-all 
+                  duration-500 ease-in-out hover:underline`} to={item?.linkTo} >{item?.title}</NavLink>
+              )
+            })}
+            {/* <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out hover:underline`} to={"/"} >Home</NavLink>
             <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out hover:underline`} to={"/blog"} >Blogs</NavLink>
             <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out hover:underline`} to={"/"} >Newsletter</NavLink>
-            <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out hover:underline`} to={"/"} >Contact</NavLink>
+            <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out hover:underline`} to={"/"} >Contact</NavLink> */}
             {/* <NavLink className={`bg-none font-semibold text-lg `} >Home</NavLink> */}
           </ul>
         </div>
 
-        <div className={`w-1/5 flex justify-center p-4`}>
-          <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out hover:underline`} to={"/login"} >Login</NavLink>
-          {/* <NavLink className={`bg-none font-semibold text-2xl w-1/5`} to={"/"} >Login</NavLink> */}
+        <div className='md:w-1/5 w-full lg:block hidden'>
+          <div className={`flex justify-center items-center mx-auto p-4 gap-x-[20px]`}>
+            <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/login"} >Login</NavLink>
+            <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/signup"} >Register</NavLink>
+            <span onClick={()=>setSerachOpen(!searchOpen)} className='cursor-pointer'>
+              <FaSearch size={"18px"}/>
+            </span>
+            {/* <NavLink className={`bg-none font-semibold text-2xl w-1/5`} to={"/"} >Login</NavLink> */}
+          </div>
         </div>
+
+        {searchOpen && (
+          <div className='block'>
+            <input type="text" className='p-2 text-lg border-yellow-400 border-2' />
+          </div>
+        )}
 
 
 
