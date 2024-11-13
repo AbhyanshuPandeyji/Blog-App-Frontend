@@ -97,31 +97,36 @@ const Login = () => {
 
     return (
         <>
-            <div className="flex flex-col w-full h-fit">
-                <h1 className="text-2xl font-semibold bg-green-600 px-8 py-4" >Login User</h1>
-                <form onSubmit={handleSubmit(userLoginHandler)} className="flex flex-col bg-gray-200 py-4 gap-y-2">
-                    {/* <div className="flex gap-x-4 w-[400px] justify-center items-center">
-                        <label htmlFor="name" className="w-1/3">
-                            Name
-                        </label>
-                        <input type="text" className="bg-gray-600 text-white rounded-md w-2/3 p-2" placeholder="name" {...register("name", { required: true })} />
-                    </div> */}
-                    <div className="flex gap-x-4 w-[400px] justify-center items-center">
-                        <label htmlFor="email" className="w-1/3">
-                            Email
-                        </label>
-                        <input type="text" className="bg-gray-600 text-white rounded-md w-2/3 p-2" placeholder="email" {...register("email", { required: true })} />
+            <div className="w-full min-h-[100vh]">
+                <div className="flex justify-center items-center w-full h-[90vh]">
+                    <div className="flex flex-col rounded-lg shadow-lg">
+                        <h1 className="text-2xl font-semibold  rounded-t-lg text-center p-4 py-6 bg-yellow-400" >Login User</h1>
+                        <form onSubmit={handleSubmit(userLoginHandler)} className="flex flex-col w-fit h-[30vh] gap-y-4 justify-center items-center p-4 py-8">
+                            {/* <div className="flex flex-col items-center gap-x-4 w-[400px]">
+                                <label htmlFor="name" className="w-1/3">
+                                    Name
+                                </label>
+                                <input type="text" className="bg-gray-300 text-white rounded-md w-2/3 p-2" placeholder="Name" {...register("name", { required: true })} />
+                            </div> */}
+                            <div className="flex flex-col gap-x-4 items-center w-[400px]">
+                                {/* <label htmlFor="email" className="w-1/3">
+                                    Email
+                                </label> */}
+                                <input type="text" className="bg-gray-300 text-white rounded-md w-2/3 p-2" placeholder="Email" {...register("email", { required: true })} />
+                            </div>
+                            <div className="flex flex-col items-center gap-x-4 w-[400px]">
+                                {/* <label htmlFor="password" className="w-1/3">
+                                    Password
+                                </label> */}
+                                <input type="text" className="bg-gray-300 text-white rounded-md w-2/3 p-2" placeholder="Password" {...register("password", { required: true })} />
+                            </div>
+                            <button disabled={loginLoader} className="bg-yellow-400 text-lg font-semibold px-4 py-2 my-4 flex 
+                            justify-center items-center w-[200px] rounded-md" type="submit" >
+                                {loginLoader ? <MoonLoader size={"22px"} /> : "Login"}
+                            </button>
+                        </form>
                     </div>
-                    <div className="flex gap-x-4 w-[400px] justify-center items-center">
-                        <label htmlFor="password" className="w-1/3">
-                            Password
-                        </label>
-                        <input type="text" className="bg-gray-600 text-white rounded-md w-2/3 p-2" placeholder="password" {...register("password", { required: true })} />
-                    </div>
-                    <button disabled={loginLoader} className="bg-green-600 px-4 py-2 flex justify-center items-center w-[200px] rounded-md" type="submit" >
-                        {loginLoader ? <MoonLoader size={"22px"} /> : "Login"}
-                    </button>
-                </form>
+                </div>
             </div>
 
 

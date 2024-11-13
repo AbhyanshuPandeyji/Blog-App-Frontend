@@ -5,7 +5,9 @@ import heroImage3 from '../../assets/images/hero/porche.jpg'
 import { FaArrowRight } from "react-icons/fa";
 
 
-
+// for hero section images create an box then translate it to the middle size of box then translate from top to middle
+// it will work as on top of content as compared to with it or after it or can simply put single colour and the images
+// the division of line or either content at some point or another will get distrubed
 const HeroSection = () => {
     return (
         <div className="h-[100vh] min-h-fit flex flex-col bg-blue-100" >

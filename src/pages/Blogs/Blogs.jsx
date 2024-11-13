@@ -10,14 +10,14 @@ const Blogs = () => {
       {/* {blogsData?.map((data, index) => (
         <BlogCard key={index} img={data.img} title={data.title} desc={data.desc} />
       ))} */}
-      <div className='flex lg:flex-row flex-col gap-4 px-2' >
+      <div className='flex lg:flex-row flex-col gap-4 px-2 my-20' >
         {/* Tooltip  */}
         {/* <div className='h-fit w-3/12 sticky left-0 top-[120px] rounded-lg bg-blue-400' >
           <TooltipBox />
         </div> */}
         {/* Blogs Content */}
 
-        <div className='min-h-[100vh] w-6/12 flex flex-col  gap-y-4' >
+        <div className='min-h-[100vh] w-8/12 flex flex-col  gap-y-4' >
           {
             blogsData?.map((item, index) => {
               return (
@@ -35,7 +35,7 @@ const Blogs = () => {
           }
         </div>
 
-        <div className='h-[86vh] bg-gray-400 sticky right-0 top-[120px] rounded-lg w-3/12'>
+        <div className='h-[86vh] bg-gray-400 sticky right-0 top-[120px] rounded-lg w-4/12'>
           Some text
         </div>
       </div>

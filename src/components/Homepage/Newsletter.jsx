@@ -34,7 +34,7 @@ const Newsletter = () => {
                     type="email"
                     placeholder="Email Address..."
                     className="w-full p-4 text-lg border-yellow-400 "
-                x   />
+                    />
                 <button
                     className='flex p-3 justify-center items-center gap-x-2 bg-yellow-400 w-full'
                     type='button'
