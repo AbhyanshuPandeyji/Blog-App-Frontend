@@ -17,9 +17,11 @@ import Loader from '../utils/Loader.jsx';
 import Login from '../pages/Login/Login.jsx';
 import BlogCard from '../components/Blog/BlogCard.jsx';
 import Footer from '../components/Footer/Footer.jsx';
+import LoginPage from '../pages/Login/LoginPage.jsx';
 const Home = lazy(() => import("../pages/Home/Home.jsx"));
 const Blogs = lazy(() => import("../pages/Blogs/Blogs.jsx"));
-const FeatureBlog = lazy(() => import("../components/Blog/FeatureBlogs.jsx"));
+// const FeatureBlog = lazy(() => import("../components/Blog/FeatureBlogs.jsx"));
+const UserPage = lazy(()=> import("../pages/User/UserPage.jsx"))
 
 
 // in the other app instead of providing the router provider its using the browser router , which is the main component to show the
@@ -54,7 +56,15 @@ const Routing = () => {
         },
         {
           path: "/login",
-          element: <Login />
+          element: <LoginPage />
+        },
+        {
+          path: "/register",
+          element: <LoginPage />
+        },
+        {
+          path: "/profile",
+          element: <UserPage />
         },
         {
           path: "/blog",

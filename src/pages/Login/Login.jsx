@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 // functions import 
 // import { makeRequest } from "../../axios.js";
@@ -125,6 +126,7 @@ const Login = () => {
                                 {loginLoader ? <MoonLoader size={"22px"} /> : "Login"}
                             </button>
                         </form>
+                        <p>Dont Have an account ? <NavLink >Signup</NavLink></p>
                     </div>
                 </div>
             </div>
