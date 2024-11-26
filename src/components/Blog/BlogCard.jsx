@@ -13,7 +13,7 @@ const BlogCard = ({ img, title, description, date, author }) => {
                     <p className="">{author}</p>
                 </div>
                 <div>
-                    <h5 className="text-2xl font-bold text-wrap">{title}</h5>
+                    <NavLink to="/" className="text-2xl cursor-pointer font-bold text-wrap">{title}</NavLink>
                     <p className="text-lg text-wrap">{description?.split("").splice(0, 50).join("")}...</p>
                 </div>
                 <div className="flex justify-between" >
