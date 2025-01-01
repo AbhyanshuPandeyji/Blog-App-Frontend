@@ -4,11 +4,13 @@ import storage from "redux-persist/lib/storage";
 import persistStore from "redux-persist/es/persistStore";
 import UserReducer from "./features/UserReducer/UserReducer.js";
 import LoaderReducer from "./features/Loaders/loaders.js";
+import BlogReducer from "./features/blogReducer/blogReducer.js";
 
 const rootReducer = combineReducers({
   // your reducers here
   user: UserReducer,
   loader: LoaderReducer,
+  blogs: BlogReducer,
 });
 
 const persistConfig = {

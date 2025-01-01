@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import BlogCard from '../../components/Blog/BlogCard.jsx'
 import { blogsData } from "../../constants/Homepage/BlogsDataConstant.js"
 import { Outlet } from 'react-router-dom';
 import profileImg from "../../assets/images/profilephoto.jpg";
 import { BlogsTabs } from '../../constants/BlogPage/BlogPageConstants.js';
+import { CreateBlogContext } from '../../context/CreateBlogContext.jsx';
 
 const Blogs = () => {
+
+
   return (
     <div className='p-4 my-8'>
+
       {/* {blogsData?.map((data, index) => (
         <BlogCard key={index} img={data.img} title={data.title} desc={data.desc} />
       ))} */}
@@ -41,7 +45,7 @@ const Blogs = () => {
                 <>
                   <BlogCard
                     key={index}
-                    // img={item?.img}
+                    blogId={item?.id}
                     img={profileImg}
                     title={item?.title}
                     description={item?.desc}

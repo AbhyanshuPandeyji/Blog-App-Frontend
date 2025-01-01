@@ -3,7 +3,7 @@
 import AboutSection from "../../components/Homepage/AboutSection";
 import BlogsSection from "../../components/Homepage/Blog/BlogsSection";
 import HeroSection from "../../components/Homepage/HeroSection";
-import LinksSection from "../../components/Homepage/LinksSection";
+// import LinksSection from "../../components/Homepage/LinksSection";
 import Newsletter from "../../components/Homepage/Newsletter";
 
 // import { useEffect, useMemo, useState } from "react";

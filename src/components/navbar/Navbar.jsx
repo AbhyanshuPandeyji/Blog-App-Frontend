@@ -53,7 +53,7 @@ const Navbar = () => {
 
         <NavLink className={`bg-none font-semibold text-2xl md:w-1/5 w-full text-center p-4`} to={"/"} >Abhyanshu</NavLink>
         <div className='md:block hidden md:w-3/5 w-full'>
-          <ul className='flex justify-center items-center mx-auto p-4 gap-x-[60px] '>
+          <ul className='flex justify-center items-center mx-auto p-4 gap-x-[60px]'>
             {NavbarLinks && NavbarLinks?.map((item, index) => {
               return (
                 <NavLink key={index} className={`bg-none font-semibold text-lg transition-all 

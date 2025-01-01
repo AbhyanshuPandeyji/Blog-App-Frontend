@@ -2,10 +2,10 @@
   display: none;
 }
 
-*{
+:root{
   margin: 0;
   padding: 0;
-  block-size: border-box;
+  box-sizing: border-box;
 }
 
 // .about-image{
@@ -21,5 +21,5 @@
 
 .section-padding{
   width: 90%;
-  padding: 40px;
+  // padding: 40px;
 }
