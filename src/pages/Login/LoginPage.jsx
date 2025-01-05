@@ -11,8 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 // import { setAuth } from "../redux/features/auth";
 // import { setLoader } from "../redux/features/loaders";
 // import Spinner from "../components/common/Spinner";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MoonLoader } from "react-spinners";
+import { UserContext } from "../../context/UserContext";
+// import UserProvider from "../../context/UserContext";
 
 const LoginPage = () => {
 
@@ -33,8 +35,18 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     // const { loginLoader , registerLoader} = useSelector((state) => state.loaders);
+    const {user , setUser , auth , setAuth} = useContext(UserContext);
 
     const submitHandler = async (data) => {
+        // console.log(data);
+        // console.log(user)
+        if(loginPage == true){
+            if(data){
+                setUser(data)
+                setAuth(true)
+            }
+        }
+
         // try {
         //     const schema = loginPage ? loginSchema : registerSchema;
         //     const validData = schema.validateSync(data, { stripUnknown: true });
@@ -77,6 +89,10 @@ const LoginPage = () => {
 
         console.log("submit button clicked")
     };
+
+    // useEffect(()=>{
+    //     console.log(user, auth)
+    // },[user, auth])
 
     return (
         <>
@@ -206,7 +222,7 @@ const LoginPage = () => {
                                 <button
                                     type="submit"
                                     // disabled={loginLoader}
-                                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    className="flex w-full justify-center rounded-md bg-yellow-500 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 >
                                     {/* {loginLoader ? <MoonLoader /> : "Log In"} */}
                                     Log In
@@ -217,7 +233,7 @@ const LoginPage = () => {
                                         <button
                                             type="submit"
                                             // disabled={registerLoader}
-                                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                            className="flex w-full justify-center rounded-md bg-yellow-500 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                         >
                                             {/* {registerLoader ? <MoonLoader /> : "Register"} */}
                                             Register

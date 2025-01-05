@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import JoditEditor from 'jodit-react';
 import CreateBox from "./CreateBox";
@@ -9,7 +9,14 @@ import { CreateBlogContext } from "../../../context/CreateBlogContext";
 
 const BulkEmail = () => {
 
-  const textRef = useRef(null)
+  const textRef = useRef(null);
+  // const params = useParams(); // is used just for the parameters the conditionals - :id for eg.
+  // console.log(params)
+
+  useEffect(()=>{
+    const locationOfPage = window.location.href;
+    console.log(locationOfPage)
+  },[])
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");

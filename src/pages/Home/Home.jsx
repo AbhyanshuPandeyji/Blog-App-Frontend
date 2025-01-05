@@ -1,10 +1,12 @@
 // // import React from 'react'
 
+import { useContext, useEffect, useState } from "react";
 import AboutSection from "../../components/Homepage/AboutSection";
 import BlogsSection from "../../components/Homepage/Blog/BlogsSection";
 import HeroSection from "../../components/Homepage/HeroSection";
 // import LinksSection from "../../components/Homepage/LinksSection";
 import Newsletter from "../../components/Homepage/Newsletter";
+import { UserContext } from "../../context/UserContext";
 
 // import { useEffect, useMemo, useState } from "react";
 
@@ -175,7 +177,18 @@ import Newsletter from "../../components/Homepage/Newsletter";
 // create a basic blog website first with the cards and all the dynamic stuffs then starts to add the features and advancements
 // the specificity and other things - after the admin point is been reached
 
+
 function Home(){
+  const { user , auth } = useContext(UserContext);
+  const [newUser , setNewUser] = useState({})
+
+  useEffect(()=>{
+    const someUser = localStorage.getItem("user");
+    setNewUser(someUser)
+  },[user])
+
+  console.log(newUser)
+
   return (
     <div>
       {/* Homepage */}

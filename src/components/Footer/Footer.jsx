@@ -41,9 +41,9 @@ const Footer = () => {
     // handleCurrentYear();
 
     return (
-        <div className="w-full flex flex-col min-h-[340px] h-fit  bg-yellow-100">
+        <div className="w-full flex flex-col min-h-[340px] h-fit bg-gray-100 " >
             {/* links section */}
-            <div className="flex md:flex-row flex-col justify-center md:gap-y-0 gap-y-10 md:h-4/6 h-fit p-4 bg-red-100 w-[80%] mx-auto">
+            <div className="flex md:flex-row flex-col justify-center md:gap-y-0 gap-y-10 md:h-4/6 h-fit p-4 w-[80%] mx-auto">
                 <div className="flex flex-col md:w-1/3 w-full ">
                     <h2 className="text-2xl font-semibold">Title</h2>
                     <ul className="flex flex-col gap-y-2 mt-6">
@@ -117,7 +117,7 @@ const Footer = () => {
             </div>
 
             {/* routing section */}
-            <div className="md:h-1/6 h-fit bg-red-400 p-4">
+            <div className="md:h-1/6 h-fit bg-yellow-500 p-4">
                 <ul className="flex md:flex-row flex-col justify-center items-center md:gap-x-8">
                     {footerMainAppLinks && footerMainAppLinks?.map((item, index) => {
                         return (
@@ -129,7 +129,7 @@ const Footer = () => {
             </div>
 
             {/* copy right section */}
-            <div className="md:h-1/6 h-fit w-full bg-blue-200 p-4 text-center">
+            <div className="md:h-1/6 h-fit w-full bg-gray-100 p-4 text-center">
                 &copy; Copyright Abhyanshu Pandey 2024 - {currentYear}
             </div>
         </div>

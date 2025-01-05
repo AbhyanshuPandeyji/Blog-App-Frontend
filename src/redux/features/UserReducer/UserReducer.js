@@ -72,7 +72,7 @@ export const getAllUsersThunkMiddleware = () => {
   return async (dispatch) => {
     try {
       dispatch(setLoader({ getLoader: true }));
-      const response = await axios.get("/user/getAll");
+      const response = await axios.get("/user/getall");
       // console.log("getAllUsers", response.data);
       if (response.status === 200) {
         // response.data is the usually how the data will come and data is not something that is defined by the backend is the value in side response ,

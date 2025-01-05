@@ -14,6 +14,7 @@ const SingleBlogPage = () => {
         return item.id === singleId;
     });
     // console.log(singleData)
+    console.log(params)
     // const singleDate = params.date;
 
     // console.log( singleDate , singleId , )
@@ -37,13 +38,13 @@ const SingleBlogPage = () => {
     return (
         <div className="min-h-screen h-fit flex lg:flex-row flex-col ">
 
-            <div className="bg-red-500 lg:w-3/12 w-full h-fit min-h-[200px]"></div>
-            <div className="bg-gray-200 lg:6/12 flex-col w-full h-screen">
+            <div className="lg:w-3/12 w-full h-fit min-h-[200px]">Blog Content Walkthrough</div>
+            <div className=" lg:6/12 flex-col w-full h-screen border-x-8 border-dotted ">
                 <SingleBlogPageTitle authorName={singleData[0]?.author} blogDate={singleData[0]?.date} blogTitle={singleData[0]?.title} />
                 {/* <button onClick={handleSubmit} className="bg-blue-400 p-4 text-lg font-semibold" >Submit</button> */}
                 {content}
             </div>
-            <div className="bg-blue-500 lg:w-3/12 w-full h-fit min-h-[200px]"></div>
+            <div className="lg:w-3/12 w-full h-fit min-h-[200px]">Other featured blogs and authors</div>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom';
 import { GoSidebarCollapse } from "react-icons/go";
 import { GoSidebarExpand } from "react-icons/go";
@@ -7,6 +7,7 @@ import { NavbarLinks } from '../../constants/common/NavbarDataConstants';
 // import logo from "../../assets/images/Deep Work.jpg"
 import { FaRegUserCircle } from "react-icons/fa";
 import user from "../../assets/images/person-image.jpg"
+import { UserContext } from './../../context/UserContext';
 
 
 
@@ -15,6 +16,15 @@ const Navbar = () => {
 
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [searchOpen, setSerachOpen] = useState(false);
+  const { user, auth } = useContext(UserContext);
+  const [pageUser, setPageUser] = useState({})
+
+  useEffect(() => {
+    const someUser = localStorage.getItem("user");
+    JSON.parse(someUser)
+    console.log(someUser)
+    setPageUser(JSON.parse(someUser))
+  }, [user, auth])
 
   // const [show, setShow] = useState(true);
   // const [lastScrollY, setLastScrollY] = useState(0);
@@ -69,13 +79,21 @@ const Navbar = () => {
         </div>
 
         <div className='md:w-1/5 w-full lg:block hidden'>
-          <div className={`flex justify-center items-center mx-auto p-4 gap-x-[20px]`}> 
+          <div className={`flex justify-center items-center mx-auto p-4 gap-x-[20px]`}>
             <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out`} to={"/profile"} >
               {/* <FaRegUserCircle size={"40px"} /> */}
               <img src={user} alt="" className='h-[40px] w-[40px] rounded-full object-cover bg-cover bg-blue-600 ' />
             </NavLink>
-            <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/login"} >Login</NavLink>
-            <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/register"} >Register</NavLink>
+            {pageUser.auth === false ?
+              (
+                <>
+                  <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/login"} >Login</NavLink>
+                  <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/register"} >Register</NavLink>
+                </>) :
+              (
+                <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/createblog"} >Create</NavLink>
+              )
+            }
             <span onClick={() => setSerachOpen(!searchOpen)} className='cursor-pointer'>
               <FaSearch size={"18px"} />
             </span>

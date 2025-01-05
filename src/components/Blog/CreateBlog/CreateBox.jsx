@@ -28,8 +28,8 @@ const CreateBox = ({ html, setHtml }) => {
             const formattedText = tempElement.innerText;
             console.log("formattedText" , formattedText)
             // text is still not in formatted form its in plain text form. How to make it work
-            setHtml(formattedText)
-            // setHtml(sanitizedContent);
+            // setHtml(formattedText)
+            setHtml(sanitizedContent);
             // setPlainText(formattedText);
         };
 

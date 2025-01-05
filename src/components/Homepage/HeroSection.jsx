@@ -10,8 +10,8 @@ import { FaArrowRight } from "react-icons/fa";
 // the division of line or either content at some point or another will get distrubed
 const HeroSection = () => {
     return (
-        <div className="h-[100vh] min-h-fit flex flex-col bg-blue-100" >
-            <div className="top h-1/2 z-10 gap-y-8" >
+        <div className="h-[100vh] min-h-fit flex flex-col" >
+            <div className="top h-1/2 z-10 gap-y-8 bg-yellow-500" >
                 <p className="xl:text-5xl md:text-2xl text-xl text-bold w-full xl:w-[60%] mx-auto text-center mt-[50px]"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis alias </p>
                 <div className='flex justify-center gap-8 mt-[100px] w-[80%] mx-auto'>
                     <div className='md:w-1/3 flex justify-center'>
@@ -28,7 +28,7 @@ const HeroSection = () => {
                     </div>
                 </div>
             </div>
-            <div className="relative h-1/2 bg-green-100 md:p-4" >
+            <div className="relative h-1/2 bg-gray-100 md:p-4" >
                 <div className='absolute gap-y-4 p-4 md:gap-x-4 justify-start w-full flex md:flex-row flex-col bottom-10'>
                     <div className='flex justify-center items-center md:w-2/3 w-full'>
                         <input

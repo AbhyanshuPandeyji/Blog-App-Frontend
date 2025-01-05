@@ -15,4 +15,8 @@ export const footerMainAppLinks = [
         title : "Newsletter",
         linkTo : "/"
     },
+    {
+        title : "Admin",
+        linkTo : "/admin"
+    },
 ]
