@@ -15,7 +15,6 @@ import { FaPenFancy } from "react-icons/fa6";
 
 // components import 
 // import Home from "../pages/Home/Home.jsx";
-import Navbar1 from "../components/Navbar/Navbar1.jsx"
 import Loader from '../utils/Loader.jsx';
 import Login from '../pages/Login/Login.jsx';
 import BlogCard from '../components/Blog/BlogCard.jsx';
@@ -23,6 +22,7 @@ import Footer from '../components/Footer/Footer.jsx';
 import LoginPage from '../pages/Login/LoginPage.jsx';
 import SingleBlogPage from '../components/Blog/SingleBlog/SingleBlogPage.jsx';
 import CreateBlogProvider from '../context/CreateBlogContext.jsx';
+const Navbar = lazy(() => import("../components/Navbar/Navbar.jsx"));
 const Home = lazy(() => import("../pages/Home/Home.jsx"));
 const Blogs = lazy(() => import("../pages/Blogs/Blogs.jsx"));
 // const FeatureBlog = lazy(() => import("../components/Blog/FeatureBlogs.jsx"));

@@ -12,7 +12,7 @@ import { UserContext } from '../../context/UserContext';
 
 
 
-const Navbar1 = () => {
+const Navbar = () => {
 
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [searchOpen, setSerachOpen] = useState(false);
@@ -145,4 +145,4 @@ const Navbar1 = () => {
   )
 }
 
-export default Navbar1;
+export default Navbar;
