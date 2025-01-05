@@ -15,7 +15,7 @@ import { FaPenFancy } from "react-icons/fa6";
 
 // components import 
 // import Home from "../pages/Home/Home.jsx";
-import Navbar from "../components/Navbar/Navbar.jsx"
+import Navbars from "../components/Navbar/Navbar1.jsx"
 import Loader from '../utils/Loader.jsx';
 import Login from '../pages/Login/Login.jsx';
 import BlogCard from '../components/Blog/BlogCard.jsx';
@@ -53,7 +53,7 @@ const Routing = () => {
     const navigate = useNavigate()
     return (
       <div className="min-h-screen">
-        <Navbar />
+        <Navbars />
         <div className='relative top-[80px] left-0'>
           <div className='min-h-[100vh] w-full'>
             {/* <div className='absolute'>

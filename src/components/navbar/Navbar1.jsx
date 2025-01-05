@@ -7,7 +7,7 @@ import { NavbarLinks } from '../../constants/common/NavbarDataConstants';
 // import logo from "../../assets/images/Deep Work.jpg"
 import { FaRegUserCircle } from "react-icons/fa";
 import user from "../../assets/images/person-image.jpg"
-import { UserContext } from './../../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 
 
 
