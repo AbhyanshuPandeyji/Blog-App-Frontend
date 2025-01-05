@@ -43,7 +43,7 @@ const Routing = () => {
   useEffect(() => {
     const page = window.location.href;
     setLocationOfPage(page)
-    const user = localStorage.getItem("user");
+    // const user = localStorage.getItem("user");
   }, []);
 
   // const navigate = useNavigate();

@@ -5,9 +5,9 @@ import { GoSidebarExpand } from "react-icons/go";
 import { FaSearch } from "react-icons/fa";
 import { NavbarLinks } from '../../constants/common/NavbarDataConstants';
 // import logo from "../../assets/images/Deep Work.jpg"
-import { FaRegUserCircle } from "react-icons/fa";
+// import { FaRegUserCircle } from "react-icons/fa";
 import userphoto from "../../assets/images/person-image.jpg"
-import { UserContext } from '../../context/UserContext';
+// import { UserContext } from '../../context/UserContext';
 
 
 
