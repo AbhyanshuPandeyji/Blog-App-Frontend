@@ -40,9 +40,9 @@ const Blogs = () => {
         {/* The display of blogs down in reverse */}
         <div className='lg:w-8/12 w-full min-h-screen h-fit grid grid-cols-1 gap-4 p-4 lg:border-gray-300 lg:border-r-2 '>
           {
-            blogsData?.reverse().map((item, index) => {
+            blogsData && blogsData?.reverse().map((item, index) => {
               return (
-                <>
+                // <>
                   <BlogCard
                     key={index}
                     blogId={item?.id}
@@ -52,8 +52,8 @@ const Blogs = () => {
                     date={item?.date}
                     author={item?.author}
                   />
-                  <div className='h-[2px] bg-gray-200' />
-                </>
+                  // {/* <div className='h-[2px] bg-gray-200' /> */}
+                // {/* </> */}
               )
             })
           }
