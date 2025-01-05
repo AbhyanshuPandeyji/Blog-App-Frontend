@@ -53,7 +53,7 @@ const Routing = () => {
     // const navigate = useNavigate()
     return (
       <div className="min-h-screen">
-        <Navbar1 />
+        <Navbar />
         <div className='relative top-[80px] left-0'>
           <div className='min-h-[100vh] w-full'>
             {/* <div className='absolute'>
