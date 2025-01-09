@@ -17,7 +17,7 @@ const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [searchOpen, setSerachOpen] = useState(false);
   // const { user, auth } = useContext(UserContext);
-  const [pageUser, setPageUser] = useState({})
+  const [pageUser, setPageUser] = useState(true)
 
 /* The `useEffect` hook in the provided code snippet is responsible for fetching user data from the
 local storage and updating the state variable `pageUser` with that data. Here's a breakdown of what
