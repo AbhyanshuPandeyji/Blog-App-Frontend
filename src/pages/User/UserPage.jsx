@@ -5,7 +5,7 @@ import userImage from "../../assets/images/person-image.jpg"
 
 const UserPage = () => {
     return (
-        <div className="min-h-screen h-fit w-full flex lg:flex-row flex-col p-10">
+        <div className="min-h-screen h-fit flex lg:flex-row flex-col section-padding my-10">
             {/* profile display - work as a card */}
             <div className="card w-1/2 min-h-screen h-fit bg-gray-200 gap-y-10 flex flex-col p-4">
                 <h2 className="title text-6xl font-semibold text-center w-full">User&apos;s Profile</h2>

@@ -21,6 +21,9 @@ import { AiFillInstagram } from "react-icons/ai";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 
+import { FaGithub } from "react-icons/fa";
+
+
 
 const Footer = () => {
 
@@ -96,11 +99,15 @@ const Footer = () => {
                                 duration-500 ease-in-out hover:underline`} to={"https://www.twitter.com"} target="_blank" >
                             <FaXTwitter size={"20px"} /></NavLink>
                         <NavLink className={`bg-none font-semibold text-lg transition-all 
-                                duration-500 ease-in-out hover:underline`} to={"https://www.linkedin.com"} target="_blank" >
+                                duration-500 ease-in-out hover:underline`} to={"https://www.linkedin.com/in/abhyanshu-pandey-a6b46b250"} target="_blank" >
                             <FaLinkedinIn size={"20px"} /></NavLink>
                         <NavLink className={`bg-none font-semibold text-lg transition-all 
                                 duration-500 ease-in-out hover:underline`} to={"https://www.instagram.com"} target="_blank" >
                             <AiFillInstagram size={"20px"} /></NavLink>
+                        <NavLink className={`bg-none font-semibold text-lg transition-all 
+                                duration-500 ease-in-out hover:underline`} to={"https://github.com/AbhyanshuPandeyji"} target="_blank" >
+                            <FaGithub size={"20px"} /></NavLink>
+
                         {/* <NavLink className={`bg-none font-semibold text-lg transition-all 
                                 duration-500 ease-in-out hover:underline`} to={"/youtube"} ><FaYoutube/></NavLink> */}
                         {/* <i>X</i>

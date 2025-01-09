@@ -1,0 +1,33 @@
+// ul.dropdown{
+//     width: 100%;
+//     min-width: 200px;
+//     background: rgba($color: #ececec, $alpha: 1.0);
+//     position: absolute;
+//     z-index: 999;
+//     display: none;
+//     padding: 10px;
+// }
+
+// ul.dropdown li {
+//  display: block;
+// }
+
+// .select-drop:hover ul.dropdown {
+//     display: block;
+//     top: 60px;
+// }
+
+
+.search-input{
+    position: absolute;
+    z-index: 999;
+    top: 100px;
+    right: 50px;
+    width: fit-content;
+    
+}
+
+.search-input .input-box {
+    display: block;
+    width: 300px;
+}

@@ -96,8 +96,8 @@ const LoginPage = () => {
 
     return (
         <>
-            <div className="flex min-h-screen h-fit flex-col justify-center px-6 py-12 lg:px-8">
-                <div className="sm:mx-auto sm:w-full sm:max-w-lg shadow-2xl rounded-xl">
+            <div className="flex min-h-screen h-fit flex-col px-6 sm:my-8 my-4 lg:px-8">
+                <div className="sm:mx-auto sm:w-full sm:max-w-lg border-[4px] border-yellow-400 rounded-xl">
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm p-10">
                         <p className="mt-5 text-center text-xl font-semibold leading-9 tracking-tight text-gray-900">
                             Sign in to your account
@@ -122,7 +122,7 @@ const LoginPage = () => {
                                             name="firstname"
                                             autoComplete="firstname"
                                             {...register("firstname")}
-                                            className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-400 sm:text-sm sm:leading-6"
                                         />
                                         <p className="text-red-500">{errors.firstname?.message}</p>
                                     </div>

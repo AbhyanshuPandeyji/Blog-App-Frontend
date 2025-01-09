@@ -12,17 +12,17 @@ const HeroSection = () => {
     return (
         <div className="h-[100vh] min-h-fit flex flex-col" >
             <div className="top h-1/2 z-10 gap-y-8 bg-yellow-500" >
-                <p className="xl:text-5xl md:text-2xl text-xl text-bold w-full xl:w-[60%] mx-auto text-center mt-[50px]"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis alias </p>
-                <div className='flex justify-center gap-8 mt-[100px] w-[80%] mx-auto'>
-                    <div className='md:w-1/3 flex justify-center'>
+                <p className="xl:text-5xl md:text-2xl text-xl lg:font-bold font-semibold w-full xl:w-[60%] mx-auto text-center mt-[50px]"> Hi Its me Abhyanshu , Ready To Begin Your Journey</p>
+                <div className='flex justify-center gap-8 mt-[100px] md:w-[80%] w-full mx-auto'>
+                    <div className='md:w-1/3 w-full flex justify-center'>
                         <img src={heroImage1} alt="" className='h-[40vh]' />
                         <p></p>
                     </div>
-                    <div className='md:w-1/3 flex justify-center'>
+                    <div className='md:w-1/3  lg:flex md:flex hidden justify-center'>
                         <img src={heroImage2} alt="" className='h-[40vh]' />
                         <p></p>
                     </div>
-                    <div className='md:w-1/3 flex justify-center'>
+                    <div className='md:w-1/3 lg:flex hidden justify-center'>
                         <img src={heroImage3} alt="" className='h-[40vh]' />
                         <p></p>
                     </div>

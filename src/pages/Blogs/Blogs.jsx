@@ -10,7 +10,7 @@ const Blogs = () => {
 
 
   return (
-    <div className='p-4 my-8'>
+    <div className='p-4 my-8 section-padding'>
 
       {/* {blogsData?.map((data, index) => (
         <BlogCard key={index} img={data.img} title={data.title} desc={data.desc} />

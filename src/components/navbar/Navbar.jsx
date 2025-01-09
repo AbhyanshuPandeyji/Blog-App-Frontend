@@ -9,7 +9,7 @@ import { NavbarLinks } from '../../constants/common/NavbarDataConstants';
 import userphoto from "../../assets/images/person-image.jpg"
 // import { UserContext } from '../../context/UserContext';
 
-
+import "./navbar.scss"
 
 
 const Navbar = () => {
@@ -83,9 +83,14 @@ it does: */
 
         <div className='md:w-1/5 w-full lg:block hidden'>
           <div className={`flex justify-center items-center mx-auto p-4 gap-x-[20px]`}>
-            <NavLink className={`bg-none font-semibold text-lg transition-all duration-500 ease-in-out`} to={"/profile"} >
+            <NavLink className={`bg-none relative font-semibold select-drop text-lg transition-all duration-500 ease-in-out`} to={"/profile"} >
               {/* <FaRegUserCircle size={"40px"} /> */}
-              <img src={userphoto} alt="" className='h-[40px] w-[40px] rounded-full object-cover bg-cover bg-blue-600 ' />
+              <img src={userphoto} alt="" className='h-[40px] w-[40px]  rounded-full object-cover bg-cover bg-blue-600 ' />
+              {/* <ul className='dropdown'>
+                <li>Profile</li>
+                <li>Creations</li>
+                <li>Revenue</li>
+              </ul> */}
             </NavLink>
             {pageUser.auth === false ?
               (
@@ -97,7 +102,7 @@ it does: */
                 <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/createblog"} >Create</NavLink>
               )
             }
-            <span onClick={() => setSerachOpen(!searchOpen)} className='cursor-pointer'>
+            <span onClick={() => setSerachOpen(!searchOpen)} className='cursor-pointer relative'>
               <FaSearch size={"18px"} />
             </span>
 
@@ -106,8 +111,8 @@ it does: */
         </div>
 
         {searchOpen && (
-          <div className='block'>
-            <input type="text" className='p-2 text-lg border-yellow-400 border-2' />
+          <div className='search-input'>
+            <input type="text" className='p-2 text-lg input-box border-yellow-400 border-2' placeholder='Search Blog...' />
           </div>
         )}
 

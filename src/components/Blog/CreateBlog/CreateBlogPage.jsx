@@ -93,7 +93,7 @@ const BulkEmail = () => {
 
   return (
     <>
-      <div className="overflow-y-auto min-h-screen px-6 py-4 md:gap-4 space-y-3">
+      <div className="overflow-y-auto min-h-screen px-6 section-padding py-4 md:gap-4 space-y-3">
         {/* Topbar  */}
         <div className="h-fit px-4 py-2 flex sm:flex-row flex-col gap-y-4 sm:gap-y-0 w-full justify-between bg-white rounded-md">
           {/* <div className=" flex items-center gap-4">

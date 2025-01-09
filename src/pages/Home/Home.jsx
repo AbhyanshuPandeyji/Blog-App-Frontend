@@ -178,26 +178,28 @@ import { UserContext } from "../../context/UserContext";
 // the specificity and other things - after the admin point is been reached
 
 
-function Home(){
-  const { user , auth } = useContext(UserContext);
-  const [newUser , setNewUser] = useState({})
+function Home() {
+  const { user, auth } = useContext(UserContext);
+  const [newUser, setNewUser] = useState({})
 
-  useEffect(()=>{
+  useEffect(() => {
     const someUser = localStorage.getItem("user");
     setNewUser(someUser)
-  },[user])
+  }, [user])
 
   console.log(newUser)
 
   return (
     <div>
       {/* Homepage */}
-      <HeroSection/>
-      <AboutSection/>
-      <BlogsSection/>
-      {/* // this was used to be the blog display section on home page for avoiding confusions */}
-      {/* <LinksSection/> */}
-      <Newsletter/>
+      <HeroSection />
+      <div className="section-padding">
+        <AboutSection />
+        <BlogsSection />
+        {/* // this was used to be the blog display section on home page for avoiding confusions */}
+        {/* <LinksSection/> */}
+        <Newsletter />
+      </div>
     </div>
   )
 }

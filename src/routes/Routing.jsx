@@ -7,7 +7,9 @@ import {
   Outlet,
   Navigate,
   useNavigate,
-  NavLink
+  NavLink,
+  useParams,
+  useLocation
 
 } from "react-router-dom";
 
@@ -22,7 +24,7 @@ import Footer from '../components/Footer/Footer.jsx';
 import LoginPage from '../pages/Login/LoginPage.jsx';
 import SingleBlogPage from '../components/Blog/SingleBlog/SingleBlogPage.jsx';
 import CreateBlogProvider from '../context/CreateBlogContext.jsx';
-const Navbar = lazy(() => import("../components/Navbar/Navbar.jsx"));
+const Navbar = lazy(() => import("../components/navbar/Navbar.jsx"));
 const Home = lazy(() => import("../pages/Home/Home.jsx"));
 const Blogs = lazy(() => import("../pages/Blogs/Blogs.jsx"));
 // const FeatureBlog = lazy(() => import("../components/Blog/FeatureBlogs.jsx"));
@@ -40,19 +42,36 @@ const Routing = () => {
   const [locationOfPage, setLocationOfPage] = useState("");
   // const {user} = 
 
+
   useEffect(() => {
-    const page = window.location.href;
+    const page = window.location;
     setLocationOfPage(page)
     // const user = localStorage.getItem("user");
   }, []);
 
   // const navigate = useNavigate();
 
+  // const params = window.location.pathname;
+  // console.log(params)
 
+  const params = useParams();
+
+  useEffect(()=>{
+    console.log(locationOfPage)
+  },[window.location , locationOfPage]);
+
+
+  const userLogin = false;
   const Layout = () => {
     // const navigate = useNavigate()
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen h-fit relative">
+        {
+          userLogin === true ? (
+            <NavLink to={"/createblog"} className='p-2 rounded-full 
+            bg-red-600 fixed z-[999] bottom-[50px] right-[50px]'>Goat</NavLink>
+          ) : ""
+        }
         <Navbar />
         <div className='relative top-[80px] left-0'>
           <div className='min-h-[100vh] w-full'>

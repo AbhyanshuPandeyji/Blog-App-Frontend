@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom"
 
 const BlogCard = ({ img, title, description, date, author , blogId }) => {
     return (
-        <div className="mx-auto w-full md:min-h-[200px] min-h-[250px] h-fit flex md:flex-row flex-col rounded-lg overflow-hidden">
+        <div className="mx-auto w-full md:min-h-[200px] min-h-[250px] h-fit flex sm:flex-row flex-col rounded-lg overflow-hidden">
             <div className="md:w-1/3 w-full items-center">
                 <img src={img} className="w-full md:h-[200px] h-[200px] p-2 overflow-hidden rounded-lg object-cover " alt="..." />
             </div>

@@ -2,7 +2,7 @@
   display: none;
 }
 
-:root{
+:root {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -19,7 +19,31 @@
 //   background-color: cyan;
 // }
 
-.section-padding{
-  width: 90%;
+.section-padding {
+  width: 80%;
+  margin: auto;
   // padding: 40px;
+}
+
+
+@media (max-width: 998px) {
+  .section-padding {
+    width: 80%;
+    margin: auto;
+
+  }
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .section-padding {
+    width: 100%;
+    margin: auto;
+  }
 }
