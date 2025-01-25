@@ -18,6 +18,10 @@ import { UserContext } from "../../context/UserContext";
 
 const LoginPage = () => {
 
+    // its a temporary solution , otherwise , have to use the axios for an better experience to not import url everwhere and inbuilt  in the requests.
+    // or one url name for all the pages. And thats exactly the same with import like this. 
+    const url = import.meta.env.VITE_BASE_URL;
+
     const [loginPage, setLoginPage] = useState(true);
     const [registerPage, setRegisterPage] = useState(false);
 
@@ -27,7 +31,7 @@ const LoginPage = () => {
         formState: { errors },
         reset
     } = useForm(
-        // { // resolver: yupResolver(registerPage === true ? registerSchema : loginSchema),}
+            // { // resolver: yupResolver(registerPage === true ? registerSchema : loginSchema),}
         );
 
     // changes made by abhyanshu
@@ -35,57 +39,67 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     // const { loginLoader , registerLoader} = useSelector((state) => state.loaders);
-    const {user , setUser , auth , setAuth} = useContext(UserContext);
+    const { user, setUser, auth, setAuth } = useContext(UserContext);
 
     const submitHandler = async (data) => {
         // console.log(data);
         // console.log(user)
-        if(loginPage == true){
-            if(data){
-                setUser(data)
-                setAuth(true)
-            }
-        }
-
-        // try {
-        //     const schema = loginPage ? loginSchema : registerSchema;
-        //     const validData = schema.validateSync(data, { stripUnknown: true });
-
-        //     if (loginPage === true) {
-        //         dispatch(setLoader({ loginLoader: true }));
-        //         const response = await axios.post(`https://k.ocpl.tech/api/login`, validData);
-        //         const { token } = response.data;
-        //         localStorage.setItem("konceptLawToken", token);
-        //         const user = await jwtDecode(localStorage.getItem("konceptLawToken"))
-        //             .foundUser;
-        //         dispatch(setUser({ user }));
-        //         localStorage.setItem("role", user.profile);
-        //         dispatch(
-        //             setAuth({ role: user.profile, isAuthenticated: true, token: token })
-        //         );
-        //         if (user.profile === "superAdmin") navigate("/dashboard");
-        //         else navigate("/document");
-        //         toastify({ msg: response.data.message, type: "success" });
+        // if(loginPage == true){
+        //     if(data){
+        //         setUser(data)
+        //         setAuth(true)
         //     }
-        //     else
-        //         if (registerPage === true) {
-        //             dispatch(setLoader({ registerLoader: true }));
-        //             const response = await axios.post(`https://m.kcptl.in/account/post`, validData);
-        //             console.log(response)
-        //             navigate("/login")
-        //             toastify({ msg: response.data.message, type: "success" });
-        //             reset();
-        //         }
-        // } catch (error) {
-        //     if (error.response?.data) {
-        //         toastify({ msg: error.response.data.message, type: "error" });
-        //     } else {
-        //         toastify({ msg: error.message, type: "error" });
-        //     }
-        // } finally {
-        //     dispatch(setLoader({ loginLoader: false }));
-        //     dispatch(setLoader({ registerLoader: false }));
         // }
+
+        try {
+            // const schema = loginPage ? loginSchema : registerSchema;
+            // const validData = schema.validateSync(data, { stripUnknown: true });
+
+            if (loginPage === true) {
+                // dispatch(setLoader({ loginLoader: true }));
+                // const response = await axios.post(`${url}/user/login`, validData);
+                const response = await axios.post(`${url}/user/login`,
+                    {
+                        email: "Abhyanshu@gmail.com",
+                        password: "Abhyanshu" 
+                    }
+                );
+                console.log("login request response", response);
+                // const { token } = response.data;
+                // localStorage.setItem("konceptLawToken", token);
+                // const user = await jwtDecode(localStorage.getItem("konceptLawToken"))
+                //     .foundUser;
+                // dispatch(setUser({ user }));
+                console.log("setting up data to user context", response.data);
+                dispatch(setUser(response.data.userData));
+                // localStorage.setItem("role", user.profile);
+                // dispatch(
+                //     setAuth({ role: user.profile, isAuthenticated: true, token: token })
+                // );
+                // if (user.profile === "superAdmin") navigate("/dashboard");
+                // else navigate("/document");
+                // toastify({ msg: response.data.message, type: "success" });
+            }
+            //     else
+            //         if (registerPage === true) {
+            //             dispatch(setLoader({ registerLoader: true }));
+            //             const response = await axios.post(`https://m.kcptl.in/account/post`, validData);
+            //             console.log(response)
+            //             navigate("/login")
+            //             toastify({ msg: response.data.message, type: "success" });
+            //             reset();
+            //         }
+        } catch (error) {
+            // if (error.response?.data) {
+            //     toastify({ msg: error.response.data.message, type: "error" });
+            // } else {
+            //     toastify({ msg: error.message, type: "error" });
+            // }
+            console.log("error", error)
+            // } finally {
+            //     dispatch(setLoader({ loginLoader: false }));
+            //     dispatch(setLoader({ registerLoader: false }));
+        }
 
         console.log("submit button clicked")
     };

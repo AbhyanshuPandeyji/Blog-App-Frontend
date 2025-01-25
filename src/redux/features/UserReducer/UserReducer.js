@@ -3,11 +3,14 @@ import { toastify } from "../../../utils/toast";
 import createAxiosInstance from "../../../config/axiosConfig.js";
 import { setLoader } from "../Loaders/loaders";
 import { setStorageItem } from "../../../utils/storeItems";
+import { makeRequest } from "../../../config/axios.js";
 
-import axios from "axios";
+// import axios from "axios";
 
-// const axios = createAxiosInstance();
-const url = "https://blog-app-backend-ns18.onrender.com/api"
+const axios = makeRequest();
+
+// const url = "https://blog-app-backend-ns18.onrender.com/api"
+// const url = import.meta.env.VITE_BASE_URL;
 
 // no need to use the assign operator to define the single reducer in the reducers because when using this , its just
 // like use state , it will create multiple keys in the state with the different names to access and then in those keys
@@ -75,7 +78,7 @@ export const getAllUsersThunkMiddleware = () => {
   return async (dispatch) => {
     try {
       dispatch(setLoader({ getLoader: true }));
-      const response = await axios.get(`${url}/user/getall`);
+      const response = await axios.get(`/user/getall`);
       // const response = await axios.get(`/user/getall`);
       console.log("getAllUsers", response.data);
       if (response.status === 200) {
@@ -98,7 +101,7 @@ export const createUserThunkMiddleware = ({ data }) => {
   return async (dispatch) => {
     try {
       dispatch(setLoader({ loader: true }));
-      const response = await axios.post(`${url}/user/create`, {
+      const response = await axios.post(`/user/create`, {
         userData: data,
       });
 
@@ -134,7 +137,7 @@ export const loginUserThunkMiddleware = ({ data }) => {
   return async (dispatch) => {
     try {
       dispatch(setLoader({ loader: true }));
-      const response = await axios.post(`${url}/user/login`, {
+      const response = await axios.post(`/user/login`, {
         userData: data,
       });
 

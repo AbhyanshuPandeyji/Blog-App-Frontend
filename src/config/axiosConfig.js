@@ -114,7 +114,7 @@ import axios from "axios";
 
 const createAxiosInstance = (config = {}) => {
   const base = config.base || import.meta.env.VITE_BASE_URL;
-  console.log("Base URL (in Axios instance):", base);
+  // console.log("Base URL (in Axios instance):", base);
 
   const axiosInstance = axios.create({
     baseURL: base,
@@ -130,3 +130,11 @@ const createAxiosInstance = (config = {}) => {
 };
 
 export default createAxiosInstance;
+
+
+// export const instance = axios.create({
+//   baseURL: 'https://blog-app-backend-ns18.onrender.com/api',
+//   // baseURL: 'https://localhost:8000/api',
+//   // timeout: 1000,
+//   headers: {'Content-Type': 'application/json'}
+// });

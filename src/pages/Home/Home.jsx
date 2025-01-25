@@ -188,6 +188,8 @@ function Home() {
   }, [user])
 
   console.log(newUser)
+  // const url = import.meta.env.VITE_BASE_URL;
+  // console.log(url)
 
   return (
     <div>

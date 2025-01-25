@@ -2,15 +2,19 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllUsersThunkMiddleware } from "../../redux/features/UserReducer/UserReducer";
 import DataTable from "react-data-table-component";
-import { all } from "axios";
-import createAxiosInstance from "../../config/axiosConfig";
+// import { all } from "axios";
+// import createAxiosInstance, { instance } from "../../config/axiosConfig";
+import { makeRequest } from "../../config/axios";
 
 const Admin = () => {
 
     console.log("Base URL:", import.meta.env.VITE_BASE_URL);
 
-    const axiosCreate = createAxiosInstance();
-    console.log(axiosCreate)
+    // const axiosCreate = createAxiosInstance();
+    // console.log(axiosCreate);
+
+    // const someInstance = instance();
+
 
 
     const dispatch = useDispatch();
@@ -25,6 +29,9 @@ const Admin = () => {
             setData(result)
         }
         response();
+
+
+
     }, [dispatch])
 
     console.log(allUsers)
@@ -36,6 +43,14 @@ const Admin = () => {
             selector: (row) => row.name
         },
     ]
+
+    const axiosInstance = makeRequest();
+
+    const responseData = async ()=>{
+        const result = await axiosInstance.get("/user/getall")
+        console.log(result.data);
+    }
+
 
     return (
         <>
@@ -55,8 +70,8 @@ const Admin = () => {
                 noDataComponent={<CustomNoDataComponenet />}
                 progressComponent={<CustomProgressComponenet />}
 
-
             />
+            <button onClick={responseData} className="rounded-lg p-4 bg-yellow-600" >Get Data</button>
         </>
     )
 }
