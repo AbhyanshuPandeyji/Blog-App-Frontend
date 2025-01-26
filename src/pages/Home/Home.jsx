@@ -7,6 +7,7 @@ import HeroSection from "../../components/Homepage/HeroSection";
 // import LinksSection from "../../components/Homepage/LinksSection";
 import Newsletter from "../../components/Homepage/Newsletter";
 import { UserContext } from "../../context/UserContext";
+import { useSelector } from "react-redux";
 
 // import { useEffect, useMemo, useState } from "react";
 
@@ -179,17 +180,19 @@ import { UserContext } from "../../context/UserContext";
 
 
 function Home() {
-  const { user, auth } = useContext(UserContext);
-  const [newUser, setNewUser] = useState({})
+  // const { user, auth } = useContext(UserContext);
+  const { user: someUser} = useSelector((state)=> state.user);
+  // const [newUser, setNewUser] = useState({})
 
-  useEffect(() => {
-    const someUser = localStorage.getItem("user");
-    setNewUser(someUser)
-  }, [user])
+  // useEffect(() => {
+  //   const someUser = localStorage.getItem("user");
+  //   setNewUser(someUser)
+  // }, [user])
 
-  console.log(newUser)
+  console.log(someUser);
   // const url = import.meta.env.VITE_BASE_URL;
   // console.log(url)
+  console.log()
 
   return (
     <div>

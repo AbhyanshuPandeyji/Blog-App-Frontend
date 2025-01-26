@@ -18,7 +18,7 @@ import { FaPenFancy } from "react-icons/fa6";
 // components import 
 // import Home from "../pages/Home/Home.jsx";
 import Loader from '../utils/Loader.jsx';
-import Login from '../pages/Login/Login.jsx';
+import {Login ,  Register } from '../pages/Login/Login.jsx';
 import BlogCard from '../components/Blog/BlogCard.jsx';
 import Footer from '../components/Footer/Footer.jsx';
 import LoginPage from '../pages/Login/LoginPage.jsx';
@@ -107,11 +107,12 @@ const Routing = () => {
         },
         {
           path: "/login",
-          element: <LoginPage />
+          // element: <LoginPage />
+          element: <Login />
         },
         {
           path: "/register",
-          element: <LoginPage />
+          element: <Register />
         },
         {
           path: "/profile",

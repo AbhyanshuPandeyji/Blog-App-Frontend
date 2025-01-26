@@ -17,11 +17,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <UserProvider>
+        {/* <UserProvider> */}
           <CreateBlogProvider>
             <App />
           </CreateBlogProvider>
-        </UserProvider>
+        {/* </UserProvider> */}
       </PersistGate>
     </Provider>
   </React.StrictMode>

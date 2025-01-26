@@ -39,7 +39,7 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     // const { loginLoader , registerLoader} = useSelector((state) => state.loaders);
-    const { user, setUser, auth, setAuth } = useContext(UserContext);
+    // const { user, setUser, auth, setAuth } = useContext(UserContext);
 
     const submitHandler = async (data) => {
         // console.log(data);
@@ -70,7 +70,7 @@ const LoginPage = () => {
                 // const user = await jwtDecode(localStorage.getItem("konceptLawToken"))
                 //     .foundUser;
                 // dispatch(setUser({ user }));
-                console.log("setting up data to user context", response.data);
+                // console.log("setting up data to user context", response.data);
                 dispatch(setUser(response.data.userData));
                 // localStorage.setItem("role", user.profile);
                 // dispatch(

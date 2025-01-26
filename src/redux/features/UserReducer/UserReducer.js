@@ -80,7 +80,7 @@ export const getAllUsersThunkMiddleware = () => {
       dispatch(setLoader({ getLoader: true }));
       const response = await axios.get(`/user/getall`);
       // const response = await axios.get(`/user/getall`);
-      console.log("getAllUsers", response.data);
+      // console.log("getAllUsers", response.data);
       if (response.status === 200) {
         // response.data is the usually how the data will come and data is not something that is defined by the backend is the value in side response ,
         // if no object then data become the response.data value otherwise the response.data.valuefrombackend is the result
@@ -97,7 +97,7 @@ export const getAllUsersThunkMiddleware = () => {
   };
 };
 
-export const createUserThunkMiddleware = ({ data }) => {
+export const createUserThunkMiddleware = ({ data } , callback) => {
   return async (dispatch) => {
     try {
       dispatch(setLoader({ loader: true }));
@@ -107,12 +107,14 @@ export const createUserThunkMiddleware = ({ data }) => {
 
       if (response.status === 200) {
         const { message } = response.data;
+        callback(null);
         toastify({
           msg: message,
           type: "success",
         });
 
-        await dispatch(getAllUsersThunkMiddleware());
+        await dispatch(setUser({user : response?.userData }));
+        // await dispatch(getAllUsersThunkMiddleware());
       }
       console.log("api request response data", response.data);
     } catch (error) {
@@ -133,11 +135,48 @@ export const createUserThunkMiddleware = ({ data }) => {
   };
 };
 
-export const loginUserThunkMiddleware = ({ data }) => {
+export const loginUserThunkMiddleware = ({ data }, callback) => {
   return async (dispatch) => {
     try {
       dispatch(setLoader({ loader: true }));
       const response = await axios.post(`/user/login`, {
+        userData: data,
+      });
+
+      console.log("response data when logging in user", response.data);
+
+      if (response.status === 200) {
+        const { message } = response.data;
+        callback(null);
+        toastify({
+          msg: message,
+          type: "success",
+        }); 
+
+        await dispatch(setUser({user : response?.data?.userData }));
+        // await localStorage.setItem("blog-user" , JSON.stringify(response?.data?.userData));
+        await setStorageItem("blog-user" , response?.data?.userData);
+        // return response;
+        // return response.status;
+        // await setStorageItem(response.data.token);
+      }
+      // console.log("api request response data", response.data);
+    } catch (error) {
+      if (error?.response) {
+        console.log(error)
+        toastify( {msg: error.response.data?.message , type: "error"});
+      }
+    } finally {
+      dispatch(setLoader({ loader: false }));
+    }
+  };
+};
+
+export const updateUserThunkMiddleware = ({ id , data }) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoader({ loader: true }));
+      const response = await axios.post(`/user/updateUser/${id}`, {
         userData: data,
       });
 
@@ -155,7 +194,37 @@ export const loginUserThunkMiddleware = ({ data }) => {
       // console.log("api request response data", response.data);
     } catch (error) {
       if (error) {
-        console.log("error message in frontend api request", error.message);
+        toastify("error message in frontend api request", error.message);
+      }
+    } finally {
+      dispatch(setLoader({ loader: false }));
+    }
+  };
+};
+
+export const deleteUserThunkMiddleware = ({ data , id }) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoader({ loader: true }));
+      const response = await axios.post(`/user/deleteUser/${id}`, {
+        userData: data,
+      });
+
+      console.log("response data when logging in user", response.data);
+
+      if (response.status === 200) {
+        const { message } = response.data;
+        toastify({
+          msg: message,
+          type: "success",
+        });
+
+        await setStorageItem(response.data.token);
+      }
+      // console.log("api request response data", response.data);
+    } catch (error) {
+      if (error) {
+        toastify("error message in frontend api request", error.message);
       }
     } finally {
       dispatch(setLoader({ loader: false }));

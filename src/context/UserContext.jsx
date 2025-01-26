@@ -1,24 +1,26 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { setStorageItem } from "../utils/storeItems";
 
 
 export const UserContext = createContext({});
 
 export default function UserProvider({children}){
 
-    const [user , setUser] = useState({});
-    const [auth , setAuth] = useState(false);
+    const [loginUser , setLoginUser] = useState({});
+    const [authUser , setAuthUser] = useState(false);
 
-    if(!user){
+    if(!loginUser){
         console.log("Data is not present");
     }
 
     useEffect(()=>{
-        localStorage.setItem("user" , JSON.stringify({userdata : user , auth : auth}) || null);
-    },[user,auth])
+        setStorageItem("blog-user" , {userdata : loginUser , auth : authUser});
+        // localStorage.setItem("user" , JSON.stringify({userdata : user , auth : auth}) || null);
+    },[loginUser,authUser])
 
     return (
         <UserContext.Provider   
-            value={{user , setUser , auth , setAuth}}
+            value={{loginUser , setLoginUser , authUser , setAuthUser}}
         >
             {children}
         </UserContext.Provider>

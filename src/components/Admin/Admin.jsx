@@ -23,19 +23,17 @@ const Admin = () => {
 
     useEffect(() => {
         dispatch(getAllUsersThunkMiddleware());
-        const response = async () => {
-            const result = await fetch("https://blog-app-backend-ns18.onrender.com/api/user/getall")
-            .then((res) => res.json());
-            setData(result)
-        }
-        response();
-
-
+        // const response = async () => {
+        //     const result = await fetch("https://blog-app-backend-ns18.onrender.com/api/user/getall")
+        //     .then((res) => res.json());
+        //     setData(result)
+        // }
+        // response();
 
     }, [dispatch])
 
-    console.log(allUsers)
-    console.log(data)
+    // console.log(allUsers)
+    // console.log(data)
 
     const columns = [
         {
