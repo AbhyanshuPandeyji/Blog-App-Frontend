@@ -14,10 +14,10 @@ export const makeRequest = (config = {}) => {
     baseURL: base,
     // baseURL: "https://blog-app-backend-ns18.onrender.com/api/",
     // baseURL: "http://localhost:8000/api/",
-    headers: {
-      "Content-Type": "application/json",
-      ...config.headers,
-    },
+    // headers: {
+    //   "Content-Type": "application/json",
+    //   ...config.headers,
+    // },
     withCredentials: true,
     credentials: "include",
     ...config,
@@ -25,15 +25,28 @@ export const makeRequest = (config = {}) => {
 
 
   // Request interceptor
+  // makeAnotherRequest.interceptors.request.use(
+  //   (requestConfig) => {
+  //     // const contentType =
+  //     //   requestConfig.headers["Content-Type"] || "application/json";
+  //     // requestConfig.headers = setCustomizedHeaders(contentType);
+  //     requestConfig.headers = {
+  //       ...requestConfig.headers,
+  //       "Content-Type": requestConfig.headers["Content-Type"] || "application/json",
+  //     };
+  //     return requestConfig;
+  //   },
+  //   (error) => Promise.reject(error)
+  // );
+
   makeAnotherRequest.interceptors.request.use(
     (requestConfig) => {
-      // const contentType =
-      //   requestConfig.headers["Content-Type"] || "application/json";
-      // requestConfig.headers = setCustomizedHeaders(contentType);
-      requestConfig.headers = {
-        ...requestConfig.headers,
-        "Content-Type": requestConfig.headers["Content-Type"] || "application/json",
-      };
+      if (!(requestConfig.data instanceof FormData)) {
+        requestConfig.headers = {
+          ...requestConfig.headers,
+          "Content-Type": requestConfig.headers["Content-Type"] || "application/json",
+        };
+      }
       return requestConfig;
     },
     (error) => Promise.reject(error)
