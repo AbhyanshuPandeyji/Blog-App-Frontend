@@ -40,85 +40,51 @@ const SingleBlogPage = () => {
     // },[])
 
     useEffect(() => {
-        // if(allBlogs){
-        //     dispatch(setLoader({ loading : true}));
-        //     setSingleData(()=>{
-        //         return allBlogs?.blogs?.filter((item, index) => {
-        //             return item._id === singleId;
-        //         });
-        //     });
-        //     if(singleData) dispatch(setLoader({loading : false}));
-        // }
-        console.log(params.id);
-        dispatch(setLoader({loading: true}))
+        dispatch(setLoader({ loading: true }));
         dispatch(getSingleBlogThunkMiddleware({ id: params.id }));
-        if(singleBlog) dispatch(setLoader({loading: false}));
-    }, [])
+    }, [dispatch, params.id]); // Add dispatch and params.id as dependencies
 
-    // console.log(params)
-    // console.log(allBlogs);
-    // // const singleData = blogsData.filter((item, index) => {
-    // // console.log(singleData)
-    // // console.log(params)
-    // console.log(singleData)
-
-    // if(singleData) return dispatch(setLoader({loading : false}));
-    // if(singleData) return loading = false;
-    // const singleDate = params.date;
-
-    // console.log( singleDate , singleId , )
-
-    // const content = useContext(CreateBlogContext);
-    // const handleSubmit = () => {
-    //     localStorage.setItem("blog",
-    //         JSON.stringify("hello its me")
-    //         //   JSON.stringify({
-    //         //   img: images,
-    //         //   title: title,
-    //         //   description: description,
-    //         //   html: html,
-    //         // })
-    //     )
-    // }
-    // console.log(content);
-
-    // const { text: content } = useContext(CreateBlogContext);
-
-    // const handleGettingBlog = ()=>{
-    //     console.log("id in parameter" , params.id)
-    //     dispatch(getSingleBlogThunkMiddleware({id : params.id }));
-    // }
-
-    // console.log(singleBlog)
-
-    // if(!singleBlog) dispatch(setLoader({loading: true}))
-
+    // Improved conditional rendering:
+    const renderBlogContent = () => {
+        if (singleBlog && singleBlog.length > 0) {  // Check for both existence and length
+            return (
+                <div className=" lg:6/12 flex-col w-full min-h-screen h-fit border-x-8 border-dotted ">
+                    <SingleBlogPageTitle
+                        authorName={singleBlog[0].authorName}
+                        blogDate={singleBlog[0].createdAt}
+                        blogTitle={singleBlog[0].title}
+                    />
+                    <div className="p-4 ">{singleBlog[0].content}</div>
+                </div>
+            );
+        } else if (loading) {
+            return <MoonLoader size={"22px"} />; // Show loader while fetching
+        } else {
+            return <div>Blog not found or loading...</div>; // Or a more user-friendly message
+        }
+    };
+    // console.log("single blog", singleBlog)
+    // console.log("single blog 0", singleBlog[0])
     return (
         <div className="min-h-screen h-fit flex lg:flex-row flex-col ">
             {/* <button onClick={handleGettingBlog} className="p-4 rounded-lg bg-blue-400 text-white font-semibold text-lg" >GetSingleBlog</button> */}
 
             <div className="lg:w-3/12 w-full h-fit min-h-[200px]">Blog Content Walkthrough</div>
-            {
-                loading ? (<MoonLoader size={"22px"} />) : (
+            {/* {
+                loading && !singleBlog ? (<MoonLoader size={"22px"} />) : (
                     <div className=" lg:6/12 flex-col w-full min-h-screen h-fit border-x-8 border-dotted ">
-                        {/* <SingleBlogPageTitle
-                            authorName={singleData[0]?.author}
-                            blogDate={singleData[0]?.createdAt}
-                            blogTitle={singleData[0]?.title}
-                        />
-                        {singleData[0]?.content} */}
                         <SingleBlogPageTitle
                             authorName={singleBlog[0]?.authorName}
                             blogDate={singleBlog[0]?.createdAt}
                             blogTitle={singleBlog[0]?.title}
                         />
-                        {/* <button onClick={handleSubmit} className="bg-blue-400 p-4 text-lg font-semibold" >Submit</button> */}
                         <div className="p-4 ">
                             {singleBlog[0]?.content}
                         </div>
                     </div>
                 )
-            }
+            } */}
+            {renderBlogContent()}
             <div className="lg:w-3/12 w-full h-fit min-h-[200px]">Other featured blogs and authors</div>
         </div>
     )
