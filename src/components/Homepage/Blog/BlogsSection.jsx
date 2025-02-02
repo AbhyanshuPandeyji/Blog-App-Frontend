@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBlogThunkMiddleware } from "../../../redux/features/blogReducer/blogReducer";
 import { setLoader } from "../../../redux/features/Loaders/loaders";
+import { MoonLoader } from "react-spinners";
 // this will be used with featured blogs, it will be more advanced in future where the blogs will be based on featured blogs , and 
 // those blogs will come on top of each category or every one of the blogs , that will require a seperate modal in backend or section 
 // which decide the feature blogs , and ability to maintain blogs based on priority and featured to put on top or lower.
