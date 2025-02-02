@@ -1,6 +1,6 @@
 import { UserPageData } from "../../constants/UserPage/UserPageConstants"
 import userImage from "../../assets/images/person-image.jpg"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { getStorageItem } from "../../utils/storeItems"
 
@@ -8,14 +8,27 @@ import { getStorageItem } from "../../utils/storeItems"
 
 const UserPage = () => {
 
-    const { user } = useSelector((state) => state.user)
+    const { singleUser } = useSelector((state) => state.user);
+    const [currentUser, setCurrentUser] = useState({});
 
     useEffect(() => {
-        // const data = getStorageItem("blog-user");
+        // const fetchUser = async ()=>{
+        //     const data = getStorageItem("blog-user");
+        //     setCurrentUser(data);
+        // }
+        // fetchUser();
+        getStorageItem("blog-user")
+            .then((data) => {
+                setCurrentUser(JSON.parse(data)); // Set the resolved data
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
         // console.log(data)
-    }, [user]);
+    }, []);
 
-    console.log(user);
+    // console.log("redux user", user);
+    // console.log("current user from local storage", currentUser)
     // localstorage or redux both will work exactly the same. still havent tried the context method which can also 
     // help to identify what to save and what to provide for local storage to save. Specifically. 
     // console.log(JSON.parse(localStorage.getItem("blog-user")))
@@ -49,7 +62,8 @@ const UserPage = () => {
                                     {`Name`}
                                 </span>
                                 <span className="font-normal first-letter:uppercase h-fit text-wrap">
-                                    {user?.name}
+                                    {/* {user?.name} */}
+                                    {currentUser?.name}
                                 </span>
                             </li>
                             <li className="flex">
@@ -61,7 +75,8 @@ const UserPage = () => {
                                 </span>
                                 <span className="font-normal first-letter:uppercase h-fit text-wrap">
                                     {/* {user?.email ? '*'.repeat(user.email.slice(0, user.email.length - 4)) + user?.email.slice(user.email.slice(user.email.length - 4)) : ''} */}
-                                    {user?.email}
+                                    {/* {user?.email} */}
+                                    {currentUser?.email}
                                 </span>
                             </li>
                             <li className="flex">
@@ -73,7 +88,8 @@ const UserPage = () => {
                                     {`Password`}
                                 </span>
                                 <span className="font-normal first-letter:uppercase h-fit text-wrap">
-                                    {user?.password ? '*'.repeat(user.password.slice(0, 10).length) : ''}
+                                    {/* {user?.password ? '*'.repeat(user.password.slice(0, 10).length) : ''} */}
+                                    {currentUser?.password ? '*'.repeat(currentUser.password.slice(0, 10).length) : ''}
                                 </span>
                             </li>
                             <li className="flex">
@@ -83,7 +99,10 @@ const UserPage = () => {
                                 >
                                     {`Username`}
                                 </span>
-                                <span className="font-normal first-letter:uppercase h-fit text-wrap">{user?.username}</span>
+                                <span className="font-normal first-letter:uppercase h-fit text-wrap">
+                                    {/* {user?.username} */}
+                                    {currentUser?.username}
+                                </span>
                             </li>
                             <li className="flex">
                                 <span
@@ -92,7 +111,10 @@ const UserPage = () => {
                                 >
                                     {`Joined`}
                                 </span>
-                                <span className="font-normal first-letter:uppercase h-fit text-wrap">{user?.createdAt}</span>
+                                <span className="font-normal first-letter:uppercase h-fit text-wrap">
+                                    {/* {user?.createdAt}  */}
+                                    {currentUser?.createdAt}
+                                </span>
                             </li>
                             {/* <li></li>
                             <li></li>

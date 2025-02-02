@@ -6,6 +6,7 @@ import JoditEditor from 'jodit-react';
 import CreateBox from "./CreateBox";
 import { Select } from "antd";
 import { CreateBlogContext } from "../../../context/CreateBlogContext";
+import { createBlogThunkMiddleware } from "../../../redux/features/blogReducer/blogReducer";
 
 const BulkEmail = () => {
 
@@ -13,10 +14,12 @@ const BulkEmail = () => {
   // const params = useParams(); // is used just for the parameters the conditionals - :id for eg.
   // console.log(params)
 
-  useEffect(()=>{
-    const locationOfPage = window.location.href;
-    console.log(locationOfPage)
-  },[])
+  // useEffect(() => {
+  //   const locationOfPage = window.location.href;
+  //   console.log(locationOfPage)
+  // }, [])
+
+  const { singleUser } = useSelector((state) => state.user)
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -27,8 +30,8 @@ const BulkEmail = () => {
   const [selectedTemplate, setSelectedTemplate] = useState("");
   // const [selectedTemplateIndex, setSelectedTemplateIndex] = useState(null);
   // const emailTextRef = useRef(null)
-  
-  const {text , setText}  = useContext(CreateBlogContext);
+
+  const { text, setText } = useContext(CreateBlogContext);
 
   // const selectedTemplate = useMemo(
   //   () => campaignEmailTemplates[selectedTemplateIndex],
@@ -42,54 +45,81 @@ const BulkEmail = () => {
 
   const navigate = useNavigate();
 
-  console.log(html)
+  // console.log(html)
   // console.log(text)
 
   // console.log(text)
 
-  const handleSelectedTemplate = (value) => {
-    if (value === "select") {
-      setSelectedTemplate("")
-    } else
-      if (value !== "" || value !== "select") {
-        setSelectedTemplate(value)
-      }
-  }
+  // const handleSelectedTemplate = (value) => {
+  //   if (value === "select") {
+  //     setSelectedTemplate("")
+  //   } else
+  //     if (value !== "" || value !== "select") {
+  //       setSelectedTemplate(value)
+  //     }
+  // }
 
   const handleImageUpload = (e) => {
     console.log(e.target.files[0]);
     // setImages(e.target.files[0])
     setImgUrl(URL.createObjectURL(e.target.files[0]));
   }
-  console.log(imgUrl)
+  // console.log(imgUrl)
 
-  // console.log("selected template", selectedTemplate)
-  console.log(images)
-  console.log(title)
-  console.log(description);
+  // // console.log("selected template", selectedTemplate)
+  // console.log(images)
+  // console.log(title)
+  // console.log(description);
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   localStorage.setItem("blog",
+  //     // JSON.stringify("hello its me")
+  //     JSON.stringify({
+  //       img: images,
+  //       title: title,
+  //       description: description,
+  //       html: html,
+  //     })
+  //   );
+  //   setText(html);
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("blog",
-      // JSON.stringify("hello its me")
-      JSON.stringify({
-        img: images,
-        title: title,
-        description: description,
-        html: html,
-      })
-    );
-    setText(html);
+    // const formData = new FormData();
+    // formData.append("img", images);
+    //   console.log(images)
+    // console.log(title)
+    // console.log(description);
+    // console.log(html);
+    // formData.append("title", title);
+    // formData.append("description", description);
+    // // formData.append("content", html);
+    // formData.append("content", text);
+    // formData.append("author", singleUser._id);
+    // console.log("sending Data", formData.getAll("title"));
+    // console.log("sending Data", formData.getAll("description"));
+    // console.log("sending Data", formData.getAll("content"));
+    // console.log("sending Data", formData.getAll("author"));
+    const data = {
+      author: singleUser._id,
+      title: title,
+      content: text,
+      description: description,
+    }
+    dispatch(createBlogThunkMiddleware({data: data}));
+    navigate("/blog")
   }
 
+  // console.log(singleUser)
 
+  // useEffect(() => {
+  //   console.log(images)
+  //   console.log(title)
+  //   console.log(description);
 
-  useEffect(() => {
-    console.log(images)
-    console.log(title)
-    console.log(description);
-
-  }, [images, title, description])
+  // }, [images, title, description])
 
   return (
     <>
@@ -127,6 +157,7 @@ const BulkEmail = () => {
         <div className=" bg-white rounded-md h-full p-3">
           <h1 className=" font-bold md:text-2xl py-2">Create Blog</h1>
           <form action="" className=" space-y-3">
+
             {/* <div className=" flex flex-col gap-2 rounded">
               <label htmlFor="" className="text-sm font-semibold">
                 Select Template :
@@ -147,6 +178,7 @@ const BulkEmail = () => {
                   ))}
               </select>
             </div> */}
+
             {/* <div className=" flex flex-col gap-2 rounded" >
               <label htmlFor="" className="text-sm font-semibold">
                 Select Template :
@@ -162,7 +194,7 @@ const BulkEmail = () => {
               />
             </div> */}
 
-            <div className=" flex flex-col gap-1 rounded flex-1">
+            {/* <div className=" flex flex-col gap-1 rounded flex-1">
               <label htmlFor="" className="text-sm font-semibold">
                 Image Upload
               </label>
@@ -172,7 +204,7 @@ const BulkEmail = () => {
                 onChange={(e) => handleImageUpload(e)}
                 value={images}
               />
-            </div>
+            </div> */}
 
             <div className=" flex flex-col gap-1 rounded flex-1">
               <label htmlFor="" className="text-sm font-semibold">
@@ -207,7 +239,19 @@ const BulkEmail = () => {
                 onChange={newcontent => { }}
                 value={text}
               /> */}
-              <CreateBox html={html} setHtml={setHtml} />
+              {/* <CreateBox html={html} setHtml={setHtml} /> */}
+              <div className=" flex flex-col gap-1 rounded flex-1">
+                <label htmlFor="" className="text-sm font-semibold">
+                  Content
+                </label>
+                <textarea
+                  type="text"
+                  className="border-2 rounded p-1 flex-1 focus:ring-2 focus:ring-purple-800 outline-none"
+                  onChange={(e) => setText(e.target.value)}
+                  value={text}
+                  rows={20}
+                />
+              </div>
               {/* <JoditEditor
                 rows={6}
                 ref={emailTextRef}
@@ -218,7 +262,7 @@ const BulkEmail = () => {
                 value={html}
               /> */}
             </div>
-            <button onClick={handleSubmit} >Submit</button>
+            <button onClick={(e) => handleSubmit(e)} className="p-4 bg-green-400 rounded-lg text-lg text-white font-semibold " >Submit</button>
           </form>
         </div>
       </div>

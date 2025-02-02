@@ -1,12 +1,62 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import BlogCard from '../../components/Blog/BlogCard.jsx'
 import { blogsData } from "../../constants/Homepage/BlogsDataConstant.js"
 import { Outlet } from 'react-router-dom';
 import profileImg from "../../assets/images/profilephoto.jpg";
 import { BlogsTabs } from '../../constants/BlogPage/BlogPageConstants.js';
 import { CreateBlogContext } from '../../context/CreateBlogContext.jsx';
+import { useDispatch, useSelector } from "react-redux";
+import { getAllBlogThunkMiddleware } from '../../redux/features/blogReducer/blogReducer.js';
+
 
 const Blogs = () => {
+
+  const dispatch = useDispatch();
+
+  const [searchInput, setSearchInput] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+
+
+  const { allBlogs } = useSelector((state) => state.blogs);
+
+
+  useEffect(() => {
+
+    dispatch(getAllBlogThunkMiddleware());
+
+  }, []);
+
+  // console.log(allBlogs);
+
+
+  const handleInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const handleSearch = () => {
+    setSearchQuery(searchInput);
+  };
+
+  // Filter the data based on the search query
+  const filteredData = allBlogs.blogs?.filter(item => {
+    return Object.keys(item).some(key => {
+      // You can customize which fields to search in, like title, description, content, etc.
+      // Example: check 'title', 'description', 'content', 'comment.text'
+      if (['title', 'description', 'content'].includes(key)) {
+        return item[key]?.toLowerCase().includes(searchQuery.toLowerCase());
+      }
+      // Additionally, you can handle comments if needed:
+      // if (key === 'comment') {
+      //   return item[key]?.some(comment =>
+      //     comment.text.toLowerCase().includes(searchQuery.toLowerCase())
+      //   );
+      // }
+      return false;
+    });
+  });
+
+
+  // console.log(filteredData)
 
 
   return (
@@ -27,8 +77,18 @@ const Blogs = () => {
         </div>
         {/* The Search Bar for single search */}
         <div className='p-2 px-4'>
-          <input type="text" placeholder='Search blog' className='p-2 text-lg' />
-          <button className='p-2 bg-yellow-300 text-lg' >Search</button>
+          <input type="text"
+            placeholder='Search blog'
+            className='p-2 text-lg'
+            value={searchInput}
+            onChange={handleInputChange}
+          />
+          <button
+            className='p-2 bg-yellow-300 text-lg'
+            onClick={handleSearch}
+          >
+            Search
+          </button>
         </div>
       </div>
       <hr className='lg:block hidden' />
@@ -38,31 +98,70 @@ const Blogs = () => {
         {/* Left - Actual Blog */}
 
         {/* The display of blogs down in reverse */}
-        <div className='lg:w-8/12 w-full min-h-screen h-fit grid grid-cols-1 gap-4 p-4 lg:border-gray-300 lg:border-r-2 '>
+        {/* <div className='lg:w-8/12 w-full min-h-screen h-fit grid grid-cols-1 gap-4 p-4 lg:border-gray-300 lg:border-r-2 '> */}
+        <div className='w-full min-h-screen h-fit grid grid-cols-1 gap-4 p-4 '>
           {
-            blogsData && blogsData?.reverse().map((item, index) => {
+            // blogsData && blogsData?.reverse().map((item, index) => {
+            filteredData && filteredData?.reverse().map((item, index) => {
               return (
                 // <>
-                  <BlogCard
-                    key={index}
-                    blogId={item?.id}
-                    img={profileImg}
-                    title={item?.title}
-                    description={item?.desc}
-                    date={item?.date}
-                    author={item?.author}
-                  />
-                  // {/* <div className='h-[2px] bg-gray-200' /> */}
+                <BlogCard
+                  key={index}
+                  blogId={item?._id}
+                  title={item?.title}
+                  desc={item?.description}
+                  content={item?.content}
+                  views={item?.numOfViews}
+                  img={profileImg}
+                  date={item?.createdAt}
+                  author={item?.author}
+                  authorName={item?.authorName}
+                />
+                // {/* <div className='h-[2px] bg-gray-200' /> */}
                 // {/* </> */}
               )
             })
           }
         </div>
 
-        {/* Right Extra Links */}
-        <div className='lg:w-4/12 w-full min-h-screen h-fit flex flex-col gap-y-4' >
+        {/* <div>
+          {`
+            "_id": "679602d097c9ab0f3f249323",
+          "title": "Just to delete this blog",
+          "description": "Just to delete this blog",
+          "author": "6794bbb379a6570218f76407",
+          "content": "Just to delete this blog",
+          "category": "Other",
+          "numOfLikes": 0,
+          "numOfSaves": 0,
+          "isFeatured": false,
+          "numOfViews": 0,
+          "createdAt": "2025-01-26T09:39:28.661Z",
+          "updatedAt": "2025-01-26T09:39:28.661Z",
+          "comment": [
+          {
+            "userId": "6794bbb379a6570218f76407",
+          "text": "This is the best comment ever",
+          "_id": "6796033997c9ab0f3f24932a"
+        },
+          {
+            "userId": "6794bbb379a6570218f76407",
+          "text": "This is the best comment ever again",
+          "_id": "6796034397c9ab0f3f24932e"
+        },
+          {
+            "userId": "6794bbb379a6570218f76407",
+          "text": "This is the best comment ever again",
+          "_id": "6796034b97c9ab0f3f249333"
+        }
+          ],
+          "__v": 3 `
+          }</div> */}
 
-        </div>
+        {/* Right Extra Links */}
+        {/* <div className='lg:w-4/12 w-full min-h-screen h-fit flex flex-col gap-y-4' >
+
+        </div> */}
 
         {/* The extra Links */}
 

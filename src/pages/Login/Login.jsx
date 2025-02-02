@@ -151,7 +151,7 @@ export const Login = () => {
                                 type="text"
                                 className=" text-xl rounded-md w-2/3 p-2 border-b-2 border-yellow-400"
                                 placeholder="Email"
-                                {...register("email", { required: true })}
+                                {...register("email", { required: true , setValueAs: (value) => value.trim(), })}
                             />
                         </div>
                         <div className="flex flex-col items-center gap-x-4 w-[400px]">
@@ -162,7 +162,7 @@ export const Login = () => {
                                 type="text"
                                 className=" text-xl rounded-md w-2/3 p-2 border-b-2 border-yellow-400"
                                 placeholder="Password"
-                                {...register("password", { required: true })}
+                                {...register("password", { required: true , setValueAs: (value) => value.trim(), })}
                             />
                         </div>
                         <button disabled={loginLoader} className="bg-yellow-400 text-lg font-semibold px-4 py-2 my-4 flex 
@@ -260,7 +260,7 @@ export const Register = () => {
                                 type="text"
                                 className=" text-xl rounded-md w-2/3 p-2 border-b-2 border-yellow-400"
                                 placeholder="Name"
-                                {...register("name", { required: true })}
+                                {...register("name", { required: true  , setValueAs: (value) => value.trim(), })}
                             />
                             <p>{errors.name && <span>This field is required</span>}</p>
                         </div>
@@ -272,7 +272,7 @@ export const Register = () => {
                                 type="text"
                                 className=" text-xl rounded-md w-2/3 p-2 border-b-2 border-yellow-400"
                                 placeholder="Email"
-                                {...register("email", { required: true })}
+                                {...register("email", { required: true , setValueAs: (value) => value.trim(), })}
                             />
                             <p>{errors.email && <span>This field is required</span>}</p>
                         </div>
@@ -284,7 +284,7 @@ export const Register = () => {
                                 type="text"
                                 className=" text-xl rounded-md w-2/3 p-2 border-b-2 border-yellow-400"
                                 placeholder="Password"
-                                {...register("password", { required: true })}
+                                {...register("password", { required: true , setValueAs: (value) => value.trim(), })}
                             />
                             <p>{errors.password && <span>This field is required</span>}</p>
                         </div>
@@ -296,7 +296,7 @@ export const Register = () => {
                                 type="text"
                                 className=" text-xl rounded-md w-2/3 p-2 border-b-2 border-yellow-400"
                                 placeholder="Username"
-                                {...register("username", { required: true })}
+                                {...register("username", { required: true , setValueAs: (value) => value.trim(), })}
                             />
                             <p>{errors.username && <span>This field is required</span>}</p>
                         </div>

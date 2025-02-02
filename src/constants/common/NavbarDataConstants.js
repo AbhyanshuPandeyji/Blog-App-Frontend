@@ -7,12 +7,16 @@ export const NavbarLinks = [
         title : "Blog",
         linkTo : "/blog"
     },
-    {
-        title : "Newsletter",
-        linkTo : "/"
-    },
+    // {
+    //     title : "Newsletter",
+    //     linkTo : "/"
+    // },
     {
         title : "Contact",
-        linkTo : "/"
+        linkTo : "/contact"
+    },
+    {
+        title : "About",
+        linkTo : "/about"
     },
 ]

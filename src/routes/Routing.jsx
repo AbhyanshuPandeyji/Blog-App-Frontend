@@ -31,6 +31,8 @@ const Blogs = lazy(() => import("../pages/Blogs/Blogs.jsx"));
 const UserPage = lazy(() => import("../pages/User/UserPage.jsx"));
 const CreateBlogPage = lazy(() => import("../components/Blog/CreateBlog/CreateBlogPage.jsx"))
 const Admin = lazy(() => import("../components/Admin/Admin.jsx"))
+const About = lazy(() => import("../pages/About/about.jsx"))
+const Contact = lazy(() => import("../pages/Contact/Contact.jsx"))
 
 
 
@@ -56,9 +58,9 @@ const Routing = () => {
 
   const params = useParams();
 
-  useEffect(()=>{
-    console.log(locationOfPage)
-  },[window.location , locationOfPage]);
+  // useEffect(()=>{
+  //   console.log(locationOfPage)
+  // },[window.location , locationOfPage]);
 
 
   const userLogin = false;
@@ -119,6 +121,14 @@ const Routing = () => {
           element: <UserPage />
         },
         {
+          path: "/contact",
+          element: <Contact />
+        },
+        {
+          path: "/about",
+          element: <About />
+        },
+        {
           path: "/blog",
           element:
             <Blogs />
@@ -130,6 +140,7 @@ const Routing = () => {
           //   }
           // ]
         },
+
         {
           path: "/blog/singleblog/:id",
           element: <SingleBlogPage />

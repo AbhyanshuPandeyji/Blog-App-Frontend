@@ -17,16 +17,16 @@ const CreateBox = ({ html, setHtml }) => {
             // const htmlContent = await response.text();
             // const htmlContent = "<p>Some Text <strong>some more text </strong> please Look at the text <i>formatting</i> idiot </p>"
             const htmlContent = `${html}`
-            console.log("htmlContent" ,htmlContent)
+            // console.log("htmlContent" ,htmlContent)
             // Sanitize the HTML content
             const sanitizedContent = DOMPurify.sanitize(htmlContent);
-            console.log("sanitizedContent",sanitizedContent)
+            // console.log("sanitizedContent",sanitizedContent)
             // Convert HTML to plain text while keeping formatting
             const tempElement = document.createElement('div');
             tempElement.innerHTML = sanitizedContent;
-            console.log("tempElement",tempElement)
+            // console.log("tempElement",tempElement)
             const formattedText = tempElement.innerText;
-            console.log("formattedText" , formattedText)
+            // console.log("formattedText" , formattedText)
             // text is still not in formatted form its in plain text form. How to make it work
             // setHtml(formattedText)
             setHtml(sanitizedContent);
@@ -36,8 +36,8 @@ const CreateBox = ({ html, setHtml }) => {
         fetchHtmlContent();
     }, [html , plainText]);
 
-    console.log(html)
-    console.log(plainText)
+    // console.log(html)
+    // console.log(plainText)
 
     const emailTextRef = useRef(null)
     const config = {

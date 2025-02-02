@@ -51,7 +51,7 @@ const axios = makeRequest();
     },
 */
 const initialState = {
-  user: null,
+  // user: null,
   singleUser: null,
   allUsers: null,
 };
@@ -113,7 +113,7 @@ export const createUserThunkMiddleware = ({ data } , callback) => {
           type: "success",
         });
 
-        await dispatch(setUser({user : response?.userData }));
+        await dispatch(setUser({singleUser : response?.userData }));
         // await dispatch(getAllUsersThunkMiddleware());
       }
       console.log("api request response data", response.data);
@@ -153,7 +153,7 @@ export const loginUserThunkMiddleware = ({ data }, callback) => {
           type: "success",
         }); 
 
-        await dispatch(setUser({user : response?.data?.userData }));
+        await dispatch(setUser({singleUser : response?.data?.userData }));
         // await localStorage.setItem("blog-user" , JSON.stringify(response?.data?.userData));
         await setStorageItem("blog-user" , response?.data?.userData);
         // return response;
