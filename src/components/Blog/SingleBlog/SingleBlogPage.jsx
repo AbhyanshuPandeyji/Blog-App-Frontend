@@ -12,7 +12,7 @@ import { setLoader } from "../../../redux/features/Loaders/loaders.js";
 const SingleBlogPage = () => {
 
     const dispatch = useDispatch();
-    const { allBlogs, singleBlog } = useSelector((state) => state.blogs);
+    const { singleBlog } = useSelector((state) => state.blogs);
     const { loading } = useSelector((state) => state.loader);
     // const [ singleData , setSingleData] = useState({});
     const params = useParams();
@@ -49,7 +49,10 @@ const SingleBlogPage = () => {
         //     });
         //     if(singleData) dispatch(setLoader({loading : false}));
         // }
+        console.log(params.id);
+        dispatch(setLoader({loading: true}))
         dispatch(getSingleBlogThunkMiddleware({ id: params.id }));
+        if(singleBlog) dispatch(setLoader({loading: false}));
     }, [])
 
     // console.log(params)
@@ -88,6 +91,8 @@ const SingleBlogPage = () => {
 
     // console.log(singleBlog)
 
+    // if(!singleBlog) dispatch(setLoader({loading: true}))
+
     return (
         <div className="min-h-screen h-fit flex lg:flex-row flex-col ">
             {/* <button onClick={handleGettingBlog} className="p-4 rounded-lg bg-blue-400 text-white font-semibold text-lg" >GetSingleBlog</button> */}
@@ -95,7 +100,7 @@ const SingleBlogPage = () => {
             <div className="lg:w-3/12 w-full h-fit min-h-[200px]">Blog Content Walkthrough</div>
             {
                 loading ? (<MoonLoader size={"22px"} />) : (
-                    <div className=" lg:6/12 flex-col w-full h-screen border-x-8 border-dotted ">
+                    <div className=" lg:6/12 flex-col w-full min-h-screen h-fit border-x-8 border-dotted ">
                         {/* <SingleBlogPageTitle
                             authorName={singleData[0]?.author}
                             blogDate={singleData[0]?.createdAt}
