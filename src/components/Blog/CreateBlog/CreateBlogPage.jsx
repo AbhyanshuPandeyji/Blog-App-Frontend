@@ -87,6 +87,7 @@ const BulkEmail = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(html)
     // const formData = new FormData();
     // formData.append("img", images);
     //   console.log(images)
@@ -105,7 +106,8 @@ const BulkEmail = () => {
     const data = {
       author: singleUser._id,
       title: title,
-      content: text,
+      // content: text,
+      content: html,
       description: description,
     }
     dispatch(createBlogThunkMiddleware({data: data}));
@@ -239,8 +241,8 @@ const BulkEmail = () => {
                 onChange={newcontent => { }}
                 value={text}
               /> */}
-              {/* <CreateBox html={html} setHtml={setHtml} /> */}
-              <div className=" flex flex-col gap-1 rounded flex-1">
+              <CreateBox html={html} setHtml={setHtml} />
+              {/* <div className=" flex flex-col gap-1 rounded flex-1">
                 <label htmlFor="" className="text-sm font-semibold">
                   Content
                 </label>
@@ -251,7 +253,7 @@ const BulkEmail = () => {
                   value={text}
                   rows={20}
                 />
-              </div>
+              </div> */}
               {/* <JoditEditor
                 rows={6}
                 ref={emailTextRef}

@@ -6,7 +6,8 @@ import { FaSearch } from "react-icons/fa";
 import { NavbarLinks } from '../../constants/common/NavbarDataConstants';
 // import logo from "../../assets/images/Deep Work.jpg"
 // import { FaRegUserCircle } from "react-icons/fa";
-import userphoto from "../../assets/images/person-image.jpg"
+import userphoto from "../../assets/images/person-image.jpg";
+import { useSelector } from "react-redux";
 // import { UserContext } from '../../context/UserContext';
 
 import "./navbar.scss"
@@ -17,11 +18,13 @@ const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [searchOpen, setSerachOpen] = useState(false);
   // const { user, auth } = useContext(UserContext);
-  const [pageUser, setPageUser] = useState(true)
+  // const [pageUser, setPageUser] = useState(true)
+  const { singleUser } = useSelector((state) => state.user);
+  console.log(singleUser)
 
-/* The `useEffect` hook in the provided code snippet is responsible for fetching user data from the
-local storage and updating the state variable `pageUser` with that data. Here's a breakdown of what
-it does: */
+  /* The `useEffect` hook in the provided code snippet is responsible for fetching user data from the
+  local storage and updating the state variable `pageUser` with that data. Here's a breakdown of what
+  it does: */
   // useEffect(() => {
   //   const someUser = localStorage.getItem("user");
   //   JSON.parse(someUser)
@@ -57,6 +60,7 @@ it does: */
   // }, [lastScrollY]);
 
   // ${show ? 'block transition-all duration-500 ease-in-out' : 'hidden transition-all duration-500 ease-in-out'}
+
   return (
 
     <div className='w-full bg-gray-100'>
@@ -83,24 +87,26 @@ it does: */
 
         <div className='md:w-1/5 w-full lg:block hidden'>
           <div className={`flex justify-center items-center mx-auto p-4 gap-x-[20px]`}>
-            <NavLink className={`bg-none relative font-semibold select-drop text-lg transition-all duration-500 ease-in-out`} to={"/profile"} >
-              {/* <FaRegUserCircle size={"40px"} /> */}
-              <img src={userphoto} alt="" className='h-[40px] w-[40px]  rounded-full object-cover bg-cover bg-blue-600 ' />
-              {/* <ul className='dropdown'>
-                <li>Profile</li>
-                <li>Creations</li>
-                <li>Revenue</li>
-              </ul> */}
-            </NavLink>
-            {pageUser.auth === false ?
+            {singleUser ?
+              (
+                <>
+                  <NavLink className={`bg-none relative font-semibold select-drop text-lg transition-all duration-500 ease-in-out`} to={"/profile"} >
+                    {/* <FaRegUserCircle size={"40px"} /> */}
+                    <img src={userphoto} alt="" className='h-[40px] w-[40px]  rounded-full object-cover bg-cover bg-blue-600 ' />
+                    {/* <ul className='dropdown'>
+                      <li>Profile</li>
+                      <li>Creations</li>
+                      <li>Revenue</li>
+                    </ul> */}
+                  </NavLink>
+                  <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/createblog"} >Create</NavLink>
+                </>
+              ) :
               (
                 <>
                   <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/login"} >Login</NavLink>
                   <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/register"} >Register</NavLink>
-                </>) :
-              (
-                <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/createblog"} >Create</NavLink>
-              )
+                </>)
             }
             <span onClick={() => setSerachOpen(!searchOpen)} className='cursor-pointer relative'>
               <FaSearch size={"18px"} />

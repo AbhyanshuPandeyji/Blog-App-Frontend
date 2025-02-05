@@ -14,7 +14,7 @@ const blogSlice = createSlice({
   name: "blogs",
   initialState: initialState,
   reducers: {
-    setUser(state, action) {
+    setBlog(state, action) {
       Object.keys(action.payload).forEach((key) => {
         state[key] = action.payload[key];
       });
@@ -23,7 +23,7 @@ const blogSlice = createSlice({
 });
 
 
-export const { setUser } = blogSlice.actions;
+export const { setBlog } = blogSlice.actions;
 export default blogSlice.reducer;
 
 
@@ -34,7 +34,7 @@ export const getAllBlogThunkMiddleware = () => {
       const response = await axios.get(`/blog`);
 
       // console.log("is data is coming", response.data);
-
+      console.log(response.data)
       if (response.status === 200) {
         const { message } = response.data;
         // callback(null);
@@ -43,7 +43,7 @@ export const getAllBlogThunkMiddleware = () => {
         //   type: "success",
         // });
 
-        await dispatch(setUser({ allBlogs: response?.data }));
+        await dispatch(setBlog({ allBlogs: response?.data }));
         // await localStorage.setItem("blog-user" , JSON.stringify(response?.data?.userData));
         // await setStorageItem("blog-user" , response?.data?.userData);
         // return response;
@@ -80,7 +80,7 @@ export const getSingleBlogThunkMiddleware = ({ id }) => {
 
         // const response1 = await axios.post(`/blog/singleblog/${id}/views`);
         
-        await dispatch(setUser({ singleBlog: response?.data?.blog }));
+        await dispatch(setBlog({ singleBlog: response?.data?.blog }));
         // await localStorage.setItem("blog-user" , JSON.stringify(response?.data?.userData));
         // await setStorageItem("blog-user" , response?.data?.userData);
         // return response;

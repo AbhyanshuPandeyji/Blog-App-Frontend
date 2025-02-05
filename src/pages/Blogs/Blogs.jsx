@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import BlogCard from '../../components/Blog/BlogCard.jsx'
-import { blogsData } from "../../constants/Homepage/BlogsDataConstant.js"
-import { Outlet } from 'react-router-dom';
+// import { blogsData } from "../../constants/Homepage/BlogsDataConstant.js"
+// import { Outlet } from 'react-router-dom';
 import profileImg from "../../assets/images/profilephoto.jpg";
 import { BlogsTabs } from '../../constants/BlogPage/BlogPageConstants.js';
-import { CreateBlogContext } from '../../context/CreateBlogContext.jsx';
+// import { CreateBlogContext } from '../../context/CreateBlogContext.jsx';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBlogThunkMiddleware } from '../../redux/features/blogReducer/blogReducer.js';
 
@@ -24,10 +24,9 @@ const Blogs = () => {
 
     dispatch(getAllBlogThunkMiddleware());
 
-  }, []);
+  }, [dispatch]);
 
   // console.log(allBlogs);
-
 
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);

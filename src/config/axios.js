@@ -14,10 +14,10 @@ export const makeRequest = (config = {}) => {
     baseURL: base,
     // baseURL: "https://blog-app-backend-ns18.onrender.com/api/",
     // baseURL: "http://localhost:8000/api/",
-    // headers: {
-    //   "Content-Type": "application/json",
-    //   ...config.headers,
-    // },
+    headers: {
+      "Content-Type": "application/json",
+      ...config.headers,
+    },
     withCredentials: true,
     credentials: "include",
     ...config,

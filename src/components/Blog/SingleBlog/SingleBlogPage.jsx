@@ -1,19 +1,24 @@
 import { useParams } from "react-router-dom"
 import SingleBlogPageTitle from "./SingleBlogPageTitle";
-import { blogsData } from "../../../constants/Homepage/BlogsDataConstant";
-import CreateBlog from "../CreateBlog/CreateBlogPage.jsx";
+// import { blogsData } from "../../../constants/Homepage/BlogsDataConstant";
+// import CreateBlog from "../CreateBlog/CreateBlogPage.jsx";
 import { useContext, useEffect, useState } from "react";
-import { CreateBlogContext } from "../../../context/CreateBlogContext.jsx";
+// import { CreateBlogContext } from "../../../context/CreateBlogContext.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBlogThunkMiddleware, getSingleBlogThunkMiddleware } from "../../../redux/features/blogReducer/blogReducer.js";
+// import { getAllBlogThunkMiddleware, getSingleBlogThunkMiddleware } from "../../../redux/features/blogReducer/blogReducer.js";
 import { MoonLoader } from "react-spinners";
 import { setLoader } from "../../../redux/features/Loaders/loaders.js";
+import { makeRequest } from "../../../config/axios.js"
+
 
 const SingleBlogPage = () => {
 
+    const axios = makeRequest();
+
     const dispatch = useDispatch();
-    const { singleBlog } = useSelector((state) => state.blogs);
+    // const { singleBlog } = useSelector((state) => state.blogs);
     const { loading } = useSelector((state) => state.loader);
+    const [data, setData] = useState({});
     // const [ singleData , setSingleData] = useState({});
     const params = useParams();
 
@@ -38,29 +43,59 @@ const SingleBlogPage = () => {
     //         if(singleData) dispatch(setLoader({loading : false}));
     //     }
     // },[])
+    // const blogId = params.id;
 
     useEffect(() => {
-        dispatch(setLoader({ loading: true }));
-        dispatch(getSingleBlogThunkMiddleware({ id: params.id }));
-    }, [dispatch, params.id]); // Add dispatch and params.id as dependencies
+        // dispatch(setLoader({ loading: true }));
+        // dispatch(getSingleBlogThunkMiddleware({ id: params.id }));
+
+        // console.log(params.id)
+        // console.log(blogId)
+        const fetchBlog = async (id) => {
+            try {
+                dispatch(setLoader({ loader: true }));
+                const response = await axios.get(`/blog/singleblog/${id}`);
+                console.log(response.data)
+                if (response.status === 200) {
+                    console.log(response.data)
+                    setData(response?.data?.blog)
+                }
+            }
+            catch (error) {
+                if (error?.response) {
+                    console.log(error)
+                    toastify({ msg: error.response.data?.message, type: "error" });
+                }
+            } finally {
+                dispatch(setLoader({ loader: false }));
+            }
+        }
+
+        fetchBlog(params.id);
+
+    }, [params]); // Add dispatch and params.id as dependencies
 
     // Improved conditional rendering:
     const renderBlogContent = () => {
-        if (singleBlog && singleBlog.length > 0) {  // Check for both existence and length
+        // if (singleBlog && singleBlog.length > 0) {  // Check for both existence and length
+        if (data && data.length > 0) {  // Check for both existence and length
             return (
                 <div className=" lg:6/12 flex-col w-full min-h-screen h-fit border-x-8 border-dotted ">
                     <SingleBlogPageTitle
-                        authorName={singleBlog[0].authorName}
-                        blogDate={singleBlog[0].createdAt}
-                        blogTitle={singleBlog[0].title}
+                        authorName={data[0].authorName}
+                        blogDate={data[0].createdAt}
+                        blogTitle={data[0].title}
                     />
-                    <div className="p-4 ">{singleBlog[0].content}</div>
+                    <div className="p-4 ">
+                        {/* {singleBlog[0].content} */}
+                        <div dangerouslySetInnerHTML={{ __html: data[0].content }} />
+                    </div>
                 </div>
             );
         } else if (loading) {
             return <MoonLoader size={"22px"} />; // Show loader while fetching
         } else {
-            return <div>Blog not found or loading...</div>; // Or a more user-friendly message
+            return <div>Blog not found</div>; // Or a more user-friendly message
         }
     };
     // console.log("single blog", singleBlog)

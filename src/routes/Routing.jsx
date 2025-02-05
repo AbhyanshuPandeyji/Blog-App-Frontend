@@ -68,12 +68,12 @@ const Routing = () => {
     // const navigate = useNavigate()
     return (
       <div className="min-h-screen h-fit relative">
-        {
+        {/* {
           userLogin === true ? (
             <NavLink to={"/createblog"} className='p-2 rounded-full 
             bg-red-600 fixed z-[999] bottom-[50px] right-[50px]'>Goat</NavLink>
           ) : ""
-        }
+        } */}
         <Navbar />
         <div className='relative top-[80px] left-0'>
           <div className='min-h-[100vh] w-full'>

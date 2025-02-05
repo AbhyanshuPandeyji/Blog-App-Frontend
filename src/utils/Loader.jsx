@@ -3,8 +3,8 @@ import { MoonLoader } from 'react-spinners'
 
 const Loader = () => {
     return (
-        <div className='w-[100%] h-[100vh] justify-center items-center flex ' >
-            <div className='z-0 bg-gray-600 opacity-10 h-[100vh] w-full' ></div>
+        <div className='w-[100vw] h-[100vh] justify-center items-center flex' >
+            {/* <div className='z-0 bg-gray-600 opacity-30 h-[100vh] w-full' ></div> */}
             <MoonLoader
                 className='z-1'
                 // sizeUnit={"px"}

@@ -5,6 +5,7 @@ import DataTable from "react-data-table-component";
 // import { all } from "axios";
 // import createAxiosInstance, { instance } from "../../config/axiosConfig";
 import { makeRequest } from "../../config/axios";
+import BlogList from "./BlogFilterPage.jsx";
 
 const Admin = () => {
 
@@ -44,7 +45,7 @@ const Admin = () => {
 
     const axiosInstance = makeRequest();
 
-    const responseData = async ()=>{
+    const responseData = async () => {
         const result = await axiosInstance.get("/user/getall")
         console.log(result.data);
     }
@@ -69,7 +70,8 @@ const Admin = () => {
                 progressComponent={<CustomProgressComponenet />}
 
             />
-            <button onClick={responseData} className="rounded-lg p-4 bg-yellow-600" >Get Data</button>
+            {/* <button onClick={responseData} className="rounded-lg p-4 bg-yellow-600" >Get Data</button> */}
+            {/* <BlogList /> */}
         </>
     )
 }
