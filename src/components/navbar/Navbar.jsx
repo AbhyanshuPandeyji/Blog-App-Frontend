@@ -145,13 +145,34 @@ const Navbar = () => {
             >
               Blog
             </NavLink>
-            <NavLink
+            {/* <NavLink
               className={`bg-none font-semibold text-lg transition-allduration-500 ease-in-out `}
               to={"/login"}
             >
               Login
-            </NavLink>
+            </NavLink> */}
             {/* <NavLink className={`bg-none font-semibold text-lg `} >Home</NavLink> */}
+            {singleUser ?
+              (
+                <>
+                  <NavLink className={`bg-none relative font-semibold select-drop text-lg transition-all duration-500 ease-in-out`} to={"/profile"} >
+                    {/* <FaRegUserCircle size={"40px"} /> */}
+                    <img src={userphoto} alt="" className='h-[40px] w-[40px]  rounded-full object-cover bg-cover bg-blue-600 ' />
+                    {/* <ul className='dropdown'>
+                      <li>Profile</li>
+                      <li>Creations</li>
+                      <li>Revenue</li>
+                    </ul> */}
+                  </NavLink>
+                  <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/createblog"} >Create</NavLink>
+                </>
+              ) :
+              (
+                <>
+                  <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/login"} >Login</NavLink>
+                  <NavLink className={`bg-none font-semibold text-lg bg-yellow-400 px-4 py-2 transition-all duration-500 ease-in-out hover:underline`} to={"/register"} >Register</NavLink>
+                </>)
+            }
           </ul>
         </div>
       </nav>

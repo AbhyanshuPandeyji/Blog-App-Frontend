@@ -11,6 +11,21 @@ import { setLoader } from "../../../redux/features/Loaders/loaders.js";
 import { makeRequest } from "../../../config/axios.js"
 
 
+// Icons
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsThreeDots } from "react-icons/bs";
+// import { CiBookmark } from "react-icons/ci";
+import { FaBookmark } from "react-icons/fa";
+import { FaRegBookmark } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
+
+
+
+
+
+
+
 const SingleBlogPage = () => {
 
     const axios = makeRequest();
@@ -18,6 +33,7 @@ const SingleBlogPage = () => {
     const dispatch = useDispatch();
     // const { singleBlog } = useSelector((state) => state.blogs);
     const { loading } = useSelector((state) => state.loader);
+    const { singleUser } = useSelector((state) => state.user);
     const [data, setData] = useState({});
     // const [ singleData , setSingleData] = useState({});
     const params = useParams();
@@ -75,12 +91,14 @@ const SingleBlogPage = () => {
 
     }, [params]); // Add dispatch and params.id as dependencies
 
+    console.log(singleUser._id)
+    console.log(data[0]?.likes?.includes(singleUser._id))
     // Improved conditional rendering:
     const renderBlogContent = () => {
         // if (singleBlog && singleBlog.length > 0) {  // Check for both existence and length
         if (data && data.length > 0) {  // Check for both existence and length
             return (
-                <div className=" lg:6/12 flex-col w-full min-h-screen h-fit border-x-8 border-dotted ">
+                <div className=" lg:6/12 flex-col p-4 w-full min-h-screen h-fit relative ">
                     <SingleBlogPageTitle
                         authorName={data[0].authorName}
                         blogDate={data[0].createdAt}
@@ -89,6 +107,14 @@ const SingleBlogPage = () => {
                     <div className="p-4 ">
                         {/* {singleBlog[0].content} */}
                         <div dangerouslySetInnerHTML={{ __html: data[0].content }} />
+                    </div>
+                    {/* <div className="absolute bottom-0 right-0" >< BsThreeDotsVertical size={"22px"} /></div> */}
+                    <div className="absolute bottom-4 right-4 flex gap-x-2 flex-wrap" >
+                        {/* <CiBookmark size={"22px"} /> */}
+                        {/* <FaHeart size={"22px"} /> */}
+                        { data[0].likes.includes(singleUser._id)  ?  <FaHeart size={"22px"} /> : <FaRegHeart size={"22px"} /> } 
+                        {data[0].isFeatured ? < FaBookmark size={"22px"} /> : <FaRegBookmark size={"22px"} />}
+                        {/* < BsThreeDots size={"22px"} /> */}
                     </div>
                 </div>
             );
@@ -104,7 +130,7 @@ const SingleBlogPage = () => {
         <div className="min-h-screen h-fit flex lg:flex-row flex-col ">
             {/* <button onClick={handleGettingBlog} className="p-4 rounded-lg bg-blue-400 text-white font-semibold text-lg" >GetSingleBlog</button> */}
 
-            <div className="lg:w-3/12 w-full h-fit min-h-[200px]">Blog Content Walkthrough</div>
+            <div className="lg:w-3/12 w-full h-fit min-h-[200px]"></div>
             {/* {
                 loading && !singleBlog ? (<MoonLoader size={"22px"} />) : (
                     <div className=" lg:6/12 flex-col w-full min-h-screen h-fit border-x-8 border-dotted ">
@@ -120,7 +146,8 @@ const SingleBlogPage = () => {
                 )
             } */}
             {renderBlogContent()}
-            <div className="lg:w-3/12 w-full h-fit min-h-[200px]">Other featured blogs and authors</div>
+            {/* <div><BsThreeDotsVertical /></div> */}
+            <div className="lg:w-3/12 w-full h-fit min-h-[200px]"></div>
         </div>
     )
 }

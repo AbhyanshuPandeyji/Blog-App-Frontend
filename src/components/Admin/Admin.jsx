@@ -6,6 +6,7 @@ import DataTable from "react-data-table-component";
 // import createAxiosInstance, { instance } from "../../config/axiosConfig";
 import { makeRequest } from "../../config/axios";
 import BlogList from "./BlogFilterPage.jsx";
+import GetToken from "../Test/GetToken.jsx";
 
 const Admin = () => {
 
@@ -72,6 +73,7 @@ const Admin = () => {
             />
             {/* <button onClick={responseData} className="rounded-lg p-4 bg-yellow-600" >Get Data</button> */}
             {/* <BlogList /> */}
+            <GetToken/>
         </>
     )
 }

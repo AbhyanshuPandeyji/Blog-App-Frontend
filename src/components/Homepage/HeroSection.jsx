@@ -64,3 +64,52 @@ const HeroSection = () => {
 }
 
 export default HeroSection
+
+
+
+// import { FaArrowRight } from "react-icons/fa";
+// import heroImage2 from '../../assets/images/hero/longroad.jpg';
+
+// const HeroSection = () => {
+//     return (
+//         <div
+//             className="h-[100vh] min-h-fit flex flex-col items-center relative p-6"
+//             style={{
+//                 background: 'linear-gradient(to bottom, #FFD700 50%, #FF6347 50%)'
+//             }}
+//         >
+//             {/* Top Text */}
+//             <p className="xl:text-5xl md:text-2xl text-xl lg:font-bold font-semibold text-center mt-6">
+//                 Hi, It's me Abhyanshu. Ready To Begin Your Journey
+//             </p>
+
+//             {/* Image in the Middle */}
+//             <div className="top-[20%] relative">
+//                 <img
+//                     src={heroImage2}
+//                     alt="Hero"
+//                     className="h-[300px] w-[300px] rounded-full border-4 border-white shadow-xl mt-10"
+//                 />
+//             </div>
+
+//             {/* Input and Button at the Bottom */}
+//             <div className='w-full max-w-md flex flex-col md:flex-row gap-4 mt-auto mb-8'>
+//                 <input
+//                     className='p-3 text-lg w-full border border-gray-300 rounded-md'
+//                     type="email"
+//                     placeholder='Email Address'
+//                 />
+//                 <button
+//                     className='flex p-3 justify-center items-center gap-x-2 bg-yellow-400 w-full md:w-[120px] rounded-md hover:bg-yellow-500 transition'
+//                     type='button'
+//                     onClick={() => console.log("Submit button clicked")}
+//                 >
+//                     <span className='text-lg font-semibold'>Submit</span>
+//                     <FaArrowRight size={'14px'} />
+//                 </button>
+//             </div>
+//         </div>
+//     )
+// }
+
+// export default HeroSection;
