@@ -101,7 +101,7 @@ const Blogs = () => {
         <div className='w-full min-h-screen h-fit grid grid-cols-1 gap-4 p-4 '>
           {
             // blogsData && blogsData?.reverse().map((item, index) => {
-            filteredData && filteredData?.reverse().map((item, index) => {
+            filteredData && filteredData?.map((item, index) => {
               return (
                 // <>
                 <BlogCard

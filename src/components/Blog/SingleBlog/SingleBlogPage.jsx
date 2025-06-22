@@ -92,7 +92,6 @@ const SingleBlogPage = () => {
     }, [params]); // Add dispatch and params.id as dependencies
 
     console.log(singleUser._id)
-    console.log(data[0]?.likes?.includes(singleUser._id))
     // Improved conditional rendering:
     const renderBlogContent = () => {
         // if (singleBlog && singleBlog.length > 0) {  // Check for both existence and length
@@ -112,7 +111,7 @@ const SingleBlogPage = () => {
                     <div className="absolute bottom-4 right-4 flex gap-x-2 flex-wrap" >
                         {/* <CiBookmark size={"22px"} /> */}
                         {/* <FaHeart size={"22px"} /> */}
-                        { data[0].likes.includes(singleUser._id)  ?  <FaHeart size={"22px"} /> : <FaRegHeart size={"22px"} /> } 
+                        {/* { data[0].likes.includes(singleUser._id)  ?  <FaHeart size={"22px"} /> : <FaRegHeart size={"22px"} /> }  */}
                         {data[0].isFeatured ? < FaBookmark size={"22px"} /> : <FaRegBookmark size={"22px"} />}
                         {/* < BsThreeDots size={"22px"} /> */}
                     </div>

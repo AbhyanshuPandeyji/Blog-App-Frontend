@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UserPage = () => {
 
-    // const { singleUser } = useSelector((state) => state.user);
+    const { singleUser } = useSelector((state) => state.user);
     const { loading } = useSelector((state) => state.loader)
     const [currentUser, setCurrentUser] = useState({});
 
@@ -45,8 +45,8 @@ const UserPage = () => {
     // console.log(JSON.parse(localStorage.getItem("blog-user")))
 
     const handleLogout = () => {
-        localStorage.clear();
-        Storage.clear();
+        localStorage.clear("user");
+        // Storage.clear();
 
     }
 

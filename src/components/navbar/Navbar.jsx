@@ -124,6 +124,8 @@ const Navbar = () => {
 
 
 
+
+
         {/* mobile view */}
         <div className='md:hidden block absolute top-5 right-5'>
           {
